@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BookReviews.Application\BookReviews.Application.csproj" />
+    <ProjectReference Include="..\BookReviews.Core\BookReviews.Core.csproj" />
+    <ProjectReference Include="..\BookReviews.Domain\BookReviews.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
