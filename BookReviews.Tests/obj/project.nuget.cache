@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "AhjWTA4QYF4=",
+  "success": true,
+  "projectFilePath": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Tests\\BookReviews.Tests.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Jonat\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.1\\microsoft.aspnetcore.openapi.9.0.1.nupkg.sha512",
+    "C:\\Users\\Jonat\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512",
+    "C:\\Users\\Jonat\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.21.0\\microsoft.visualstudio.azure.containers.tools.targets.1.21.0.nupkg.sha512"
+  ],
+  "logs": []
+}
