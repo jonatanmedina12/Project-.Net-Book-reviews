@@ -38,7 +38,7 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "BookReviews.API",
+              "Title": "BookReviews.API.csproj",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\BookReviews.API.csproj",
               "RelativeDocumentMoniker": "BookReviews.API.csproj",
               "ToolTip": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\BookReviews.API.csproj",
@@ -58,8 +58,7 @@
               "RelativeToolTip": "..\\BookReviews.Tests\\Class1.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T16:39:51.184Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-07T16:39:51.184Z"
             },
             {
               "$type": "Document",
@@ -71,8 +70,7 @@
               "RelativeToolTip": "..\\BookReviews.Application\\Class1.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T16:39:01.477Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-07T16:39:01.477Z"
             },
             {
               "$type": "Document",
@@ -84,8 +82,7 @@
               "RelativeToolTip": "..\\BookReviews.Domain\\Class1.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T16:38:39.557Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-07T16:38:39.557Z"
             },
             {
               "$type": "Document",
@@ -97,8 +94,7 @@
               "RelativeToolTip": "..\\BookReviews.Infrastructure\\Class1.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T16:38:18.708Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-07T16:38:18.708Z"
             },
             {
               "$type": "Document",
@@ -110,8 +106,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T16:33:25.114Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-07T16:33:25.114Z"
             },
             {
               "$type": "Document",
@@ -123,8 +118,7 @@
               "RelativeToolTip": "..\\BookReviews.Core\\Class1.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T16:30:29.242Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-07T16:30:29.242Z"
             }
           ]
         }
