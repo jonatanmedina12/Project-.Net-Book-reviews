@@ -1,4 +1,5 @@
-﻿using BookReviews.Application.Interfaces;
+﻿using BookReviews.API.Extensions;
+using BookReviews.Application.Interfaces;
 using BookReviews.Core.Interfaces;
 using BookReviews.Infrastructure.Data;
 using BookReviews.Infrastructure.Data.Repositories;
@@ -17,9 +18,9 @@ namespace BookReviews.Infrastructure
         {
             // Configurar PostgreSQL
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(
-                    configuration.GetConnectionString("DefaultConnection"),
-                    b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+               options.UseNpgsql(
+                   configuration.GetConnectionString("DefaultConnection"),
+                   b => b.MigrationsAssembly("BookReviews.API")));
 
             // Registrar repositorios
             services.AddScoped<IBookRepository, BookRepository>();
@@ -27,6 +28,7 @@ namespace BookReviews.Infrastructure
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IJwtGenerator, JwtGenerator>();
 
             // Registrar servicios de infraestructura
             services.AddScoped<IIdentityService, IdentityService>();

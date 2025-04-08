@@ -19,6 +19,24 @@ namespace BookReviews.Infrastructure.Data
 
             // Aplicar todas las configuraciones del ensamblado
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+            SeedData(modelBuilder);
+
+        }
+        private void SeedData(ModelBuilder modelBuilder)
+        {
+            // En lugar de usar HasData, puedes usar SQL directo
+            modelBuilder.Entity<Category>().ToTable("categories", "public");
+
+            // Después de definir la migración, puedes agregar esto
+            // en el método Up() de la migración manualmente
+            /*
+            migrationBuilder.Sql(@"
+                INSERT INTO public.categories (name) VALUES 
+                ('Ficción'), ('No Ficción'), ('Ciencia Ficción'), ('Fantasía'), 
+                ('Misterio'), ('Historia'), ('Biografía'), ('Autoayuda'), 
+                ('Programación'), ('Ciencia');
+            ");
+            */
         }
     }
 }

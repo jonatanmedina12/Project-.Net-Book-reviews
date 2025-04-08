@@ -30,10 +30,8 @@ namespace BookReviews.Application.Services
         {
             try
             {
-                return await _identityService.RegisterUserAsync(
-                    registerDto.Username,
-                    registerDto.Email,
-                    registerDto.Password);
+                // Por defecto, asignar el rol "User" a usuarios nuevos
+                return await _identityService.RegisterAsync(registerDto); // Rol por defecto "User"
             }
             catch (Exception ex)
             {
@@ -64,7 +62,6 @@ namespace BookReviews.Application.Services
                 // En una implementación real, aquí enviarías un correo con un token
                 // Por ahora, solo registramos la solicitud
                 _logger.LogInformation("Solicitud de restablecimiento de contraseña para {Email}", email);
-
                 // Para una implementación real, crea un token de restablecimiento y envía un correo
                 await Task.CompletedTask;
             }
@@ -87,6 +84,20 @@ namespace BookReviews.Application.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error al restablecer contraseña para {Email}", resetPasswordDto.Email);
+                throw;
+            }
+        }
+
+        // Nuevo método para asignar roles (si decides implementarlo a nivel de ApplicationService)
+        public async Task<bool> AssignRoleAsync(int userId, string role)
+        {
+            try
+            {
+                return await _identityService.AssignRoleAsync(userId, role);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al asignar rol {Role} al usuario {UserId}", role, userId);
                 throw;
             }
         }
