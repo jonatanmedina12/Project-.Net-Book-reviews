@@ -30,4 +30,8 @@
     <ProjectReference Include="..\BookReviews.Infrastructure\BookReviews.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>

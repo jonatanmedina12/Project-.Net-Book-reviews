@@ -20,6 +20,7 @@ namespace BookReviews.Application
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IWebRootProvider, WebRootProvider>();
 
 
             services.AddSingleton(provider => new MapperConfiguration(cfg =>

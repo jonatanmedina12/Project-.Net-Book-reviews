@@ -13,11 +13,25 @@ namespace BookReviews.Application.Mappings
     {
         public MappingProfile()
         {
-            // Book
             CreateMap<Book, BookDto>()
-                .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
-                .ForMember(dest => dest.AverageRating, opt => opt.MapFrom(src => src.GetAverageRating()))
-                .ForMember(dest => dest.ReviewCount, opt => opt.MapFrom(src => src.Reviews.Count));
+            .ForMember(dest => dest.CoverImageUrl, opt => opt.MapFrom(src => src.CoverImagePath))
+            .ForMember(dest => dest.CoverImage, opt => opt.Ignore());
+            // Mapeo de BookDto a Book
+            CreateMap<BookDto, Book>()
+                .ConstructUsing(src => new Book(
+                    src.Title,
+                    src.Author,
+                    src.Summary,
+                    src.Isbn,
+                    src.CategoryId,
+                    null, // Reviews se establecen separadamente
+                    src.Language,
+                    src.PublishedYear,
+                    src.Publisher,
+                    src.Pages))
+                .ForMember(dest => dest.CoverImagePath, opt => opt.MapFrom(src => src.CoverImageUrl))
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.Reviews, opt => opt.Ignore());
 
             // Review
             CreateMap<Review, ReviewDto>()
