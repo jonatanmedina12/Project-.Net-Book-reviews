@@ -1,64 +1,177 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookReviews.Domain.Entities
 {
+    /// <summary>
+    /// Representa un libro en el sistema
+    /// </summary>
     public class Book
     {
-        public int Id { get; private set; }
-        public string Title { get; private set; }
-        public string Author { get; private set; }
-        public string Summary { get; private set; }
-        public int CategoryId { get; private set; }
-        public Category Category { get; private set; }
-        public ICollection<Review> Reviews { get; private set; } = new List<Review>();
-
+        /// <summary>
+        /// Constructor privado para Entity Framework
+        /// </summary>
         private Book() { }
 
-        public Book(string title, string author, string summary, int categoryId)
+        /// <summary>
+        /// Constructor completo para crear un libro
+        /// </summary>
+        public Book(
+            string title,
+            string author,
+            string summary,
+            string isbn,
+            int categoryId,
+            ICollection<Review> reviews,
+            string language,
+            int publishedYear,
+            string publisher,
+            int pages)
         {
-            ValidateTitle(title);
-            ValidateAuthor(author);
-
-            Title = title;
-            Author = author;
+            Title = title ?? throw new ArgumentNullException(nameof(title));
+            Author = author ?? throw new ArgumentNullException(nameof(author));
             Summary = summary;
+            Isbn = isbn;
             CategoryId = categoryId;
+            Reviews = reviews ?? new List<Review>();
+            Language = language;
+            PublishedYear = publishedYear;
+            Publisher = publisher;
+            Pages = pages;
         }
 
-        public void UpdateDetails(string title, string author, string summary, int categoryId)
-        {
-            ValidateTitle(title);
-            ValidateAuthor(author);
+        /// <summary>
+        /// Identificador único del libro
+        /// </summary>
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; private set; }
 
-            Title = title;
-            Author = author;
-            Summary = summary;
-            CategoryId = categoryId;
+        /// <summary>
+        /// Título del libro
+        /// </summary>
+        [Required]
+        [MaxLength(200)]
+        public string Title { get; private set; }
+
+        /// <summary>
+        /// Autor del libro
+        /// </summary>
+        [Required]
+        [MaxLength(150)]
+        public string Author { get; private set; }
+
+        /// <summary>
+        /// Resumen del libro
+        /// </summary>
+        [MaxLength(1000)]
+        public string Summary { get; private set; }
+
+        /// <summary>
+        /// Identificador de la categoría
+        /// </summary>
+        [Required]
+        public int CategoryId { get; private set; }
+
+        /// <summary>
+        /// Categoría del libro
+        /// </summary>
+        [ForeignKey(nameof(CategoryId))]
+        public Category Category { get; private set; }
+
+        /// <summary>
+        /// Colección de reseñas del libro
+        /// </summary>
+        public ICollection<Review> Reviews { get; private set; } = new List<Review>();
+
+        /// <summary>
+        /// ISBN del libro
+        /// </summary>
+        [MaxLength(20)]
+        public string Isbn { get; private set; }
+
+        /// <summary>
+        /// Idioma del libro
+        /// </summary>
+        [MaxLength(50)]
+        public string Language { get; private set; }
+
+        /// <summary>
+        /// Año de publicación
+        /// </summary>
+        [Range(1000, 9999)]
+        public int PublishedYear { get; private set; }
+
+        /// <summary>
+        /// Editorial
+        /// </summary>
+        [MaxLength(100)]
+        public string Publisher { get; private set; }
+
+        /// <summary>
+        /// Número de páginas
+        /// </summary>
+        [Range(0, int.MaxValue)]
+        public int Pages { get; private set; }
+
+        /// <summary>
+        /// Ruta de la imagen de portada
+        /// </summary>
+        [MaxLength(500)]
+        public string CoverImagePath { get; private set; }
+
+        /// <summary>
+        /// Método para actualizar la ruta de la imagen de portada
+        /// </summary>
+        /// <param name="coverImagePath">Nueva ruta de la imagen de portada</param>
+        public void UpdateCoverImage(string coverImagePath)
+        {
+            CoverImagePath = coverImagePath;
         }
 
+        /// <summary>
+        /// Calcula la calificación promedio del libro
+        /// </summary>
+        /// <returns>Calificación promedio</returns>
         public double GetAverageRating()
         {
-            return Reviews.Any() ? Reviews.Average(r => r.Rating.Value) : 0;
+            if (Reviews == null || Reviews.Count == 0)
+                return 0;
+
+            return Reviews.Average(r => r.Rating);
         }
 
-        private void ValidateTitle(string title)
+        /// <summary>
+        /// Método para actualizar los detalles del libro
+        /// </summary>
+        public void UpdateDetails(
+            string title,
+            string author,
+            string summary,
+            int categoryId,
+            string isbn,
+            string language,
+            int pages,
+            int publishedYear,
+            string publisher,
+            string coverImagePath = null)
         {
-            if (string.IsNullOrWhiteSpace(title))
-                throw new ArgumentException("El título del libro no puede estar vacío", nameof(title));
-            if (title.Length > 200)
-                throw new ArgumentException("El título no puede exceder los 200 caracteres", nameof(title));
-        }
+            Title = title ?? throw new ArgumentNullException(nameof(title));
+            Author = author ?? throw new ArgumentNullException(nameof(author));
+            Summary = summary;
+            CategoryId = categoryId;
+            Isbn = isbn;
+            Language = language;
+            Pages = pages;
+            PublishedYear = publishedYear;
+            Publisher = publisher;
 
-        private void ValidateAuthor(string author)
-        {
-            if (string.IsNullOrWhiteSpace(author))
-                throw new ArgumentException("El autor del libro no puede estar vacío", nameof(author));
-            if (author.Length > 150)
-                throw new ArgumentException("El nombre del autor no puede exceder los 150 caracteres", nameof(author));
+            if (!string.IsNullOrEmpty(coverImagePath))
+            {
+                CoverImagePath = coverImagePath;
+            }
         }
     }
 }
