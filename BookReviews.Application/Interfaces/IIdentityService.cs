@@ -9,9 +9,11 @@ namespace BookReviews.Application.Interfaces
 {
     public interface IIdentityService
     {
-        Task<UserDto> RegisterUserAsync(string username, string email, string password);
+        Task<UserDto> RegisterAsync(RegisterDto registerDto);
         Task<TokenDto> AuthenticateAsync(string email, string password);
         Task<bool> ChangePasswordAsync(int userId, string currentPassword, string newPassword);
         Task ResetPasswordAsync(string email, string resetToken, string newPassword);
+
+        Task<bool> AssignRoleAsync(int userId, string role);
     }
 }

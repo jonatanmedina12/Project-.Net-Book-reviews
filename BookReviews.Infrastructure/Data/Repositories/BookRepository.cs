@@ -53,8 +53,10 @@ namespace BookReviews.Infrastructure.Data.Repositories
             }
 
             return await query
-                .Include(b => b.Category)
-                .ToListAsync();
+              .Include(b => b.Category)
+              .Include(b => b.Reviews)  // Incluir las reseñas
+                  .ThenInclude(r => r.User)  // Opcionalmente incluir los usuarios de las reseñas
+              .ToListAsync();
         }
 
         public async Task<Book> AddAsync(Book book)

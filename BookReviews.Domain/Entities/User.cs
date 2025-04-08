@@ -14,18 +14,17 @@ namespace BookReviews.Domain.Entities
         public string PasswordHash { get; private set; }
         public string ProfilePictureUrl { get; private set; }
         public DateTime RegisterDate { get; private set; }
+        public string Role { get; private set; } // Nueva propiedad para el rol
         public ICollection<Review> Reviews { get; private set; } = new List<Review>();
 
         private User() { }
 
-        public User(string username, string email, string passwordHash)
+        public User(string username, string email, string passwordHash, string role = "User")
         {
             if (string.IsNullOrWhiteSpace(username))
                 throw new ArgumentException("El nombre de usuario no puede estar vacío", nameof(username));
-
             if (string.IsNullOrWhiteSpace(email) || !IsValidEmail(email))
                 throw new ArgumentException("El correo electrónico no es válido", nameof(email));
-
             if (string.IsNullOrWhiteSpace(passwordHash))
                 throw new ArgumentException("La contraseña hash no puede estar vacía", nameof(passwordHash));
 
@@ -33,13 +32,13 @@ namespace BookReviews.Domain.Entities
             Email = email;
             PasswordHash = passwordHash;
             RegisterDate = DateTime.UtcNow;
+            Role = role; // Asignar el rol
         }
 
         public void UpdateProfile(string username, string email, string profilePictureUrl)
         {
             if (string.IsNullOrWhiteSpace(username))
                 throw new ArgumentException("El nombre de usuario no puede estar vacío", nameof(username));
-
             if (string.IsNullOrWhiteSpace(email) || !IsValidEmail(email))
                 throw new ArgumentException("El correo electrónico no es válido", nameof(email));
 
@@ -54,6 +53,19 @@ namespace BookReviews.Domain.Entities
                 throw new ArgumentException("La nueva contraseña hash no puede estar vacía", nameof(newPasswordHash));
 
             PasswordHash = newPasswordHash;
+        }
+
+        public void AssignRole(string role)
+        {
+            if (string.IsNullOrWhiteSpace(role))
+                throw new ArgumentException("El rol no puede estar vacío", nameof(role));
+
+            Role = role;
+        }
+
+        public bool IsAdmin()
+        {
+            return Role == "Admin";
         }
 
         private bool IsValidEmail(string email)

@@ -29,21 +29,34 @@ namespace BookReviews.Infrastructure.Identity
             _configuration = configuration;
             _logger = logger;
         }
+        public async Task<bool> AssignRoleAsync(int userId, string role)
+        {
+            var user = await _userRepository.GetByIdAsync(userId);
+            if (user == null)
+                return false;
 
-        public async Task<UserDto> RegisterUserAsync(string username, string email, string password)
+            user.AssignRole(role);
+            await _userRepository.UpdateAsync(user);
+            await _unitOfWork.CompleteAsync();
+
+            _logger.LogInformation($"Rol '{role}' asignado al usuario {userId}");
+
+            return true;
+        }
+        public async Task<UserDto> RegisterAsync(RegisterDto registerDto)
         {
             // Verificar si el usuario ya existe
-            if (await _userRepository.GetByUsernameAsync(username) != null)
-                throw new ArgumentException($"El nombre de usuario '{username}' ya está en uso");
+            if (await _userRepository.GetByUsernameAsync(registerDto.Username) != null)
+                throw new ArgumentException($"El nombre de usuario '{registerDto.Username}' ya está en uso");
 
-            if (await _userRepository.GetByEmailAsync(email) != null)
-                throw new ArgumentException($"El correo electrónico '{email}' ya está registrado");
+            if (await _userRepository.GetByEmailAsync(registerDto.Email) != null)
+                throw new ArgumentException($"El correo electrónico '{registerDto.Email}' ya está registrado");
 
             // Crear hash de la contraseña
-            string passwordHash = BC.HashPassword(password);
+            string passwordHash = BC.HashPassword(registerDto.Password);
 
             // Crear nuevo usuario
-            var user = new User(username, email, passwordHash);
+            var user = new User(registerDto.Username, registerDto.Email, passwordHash);
             await _userRepository.AddAsync(user);
             await _unitOfWork.CompleteAsync();
 
@@ -53,7 +66,9 @@ namespace BookReviews.Infrastructure.Identity
                 Username = user.Username,
                 Email = user.Email,
                 ProfilePictureUrl = user.ProfilePictureUrl,
-                RegisterDate = user.RegisterDate
+                RegisterDate = user.RegisterDate,
+                Role = user.Role // Incluir el rol en el DTO
+
             };
         }
 
@@ -124,20 +139,22 @@ namespace BookReviews.Infrastructure.Identity
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Email, user.Email)
+                new Claim(ClaimTypes.Email, user.Email),
+                // Añadir el rol como claim
+                new Claim(ClaimTypes.Role, user.Role ?? "User") // Valor predeterminado "User" si es null
             };
 
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddMinutes(int.Parse(_configuration["JWT:ExpiryInMinutes"])),
-                SigningCredentials = new SigningCredentials(
-                    new SymmetricSecurityKey(key),
-                    SecurityAlgorithms.HmacSha256Signature)
-            };
+                    var tokenDescriptor = new SecurityTokenDescriptor
+                    {
+                        Subject = new ClaimsIdentity(claims),
+                        Expires = DateTime.UtcNow.AddMinutes(int.Parse(_configuration["JWT:ExpiryInMinutes"])),
+                        SigningCredentials = new SigningCredentials(
+                            new SymmetricSecurityKey(key),
+                            SecurityAlgorithms.HmacSha256Signature)
+                    };
 
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
+                    var token = tokenHandler.CreateToken(tokenDescriptor);
+                    return tokenHandler.WriteToken(token);
         }
     }
 }

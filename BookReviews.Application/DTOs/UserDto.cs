@@ -22,5 +22,9 @@ namespace BookReviews.Application.DTOs
         public string ProfilePictureUrl { get; set; }
 
         public DateTime RegisterDate { get; set; }
+
+        public string Role { get; set; }
+
+   
     }
 }

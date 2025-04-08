@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
+using System.Reflection;
+using System.Security.Claims;
 using System.Text;
 
 namespace BookReviews.API.Extensions
@@ -76,6 +78,8 @@ namespace BookReviews.API.Extensions
             app.UseMiddleware<Middleware.RequestLoggingMiddleware>();
             app.UseHttpsRedirection();
             app.UseCors("AllowAllOrigins");
+            app.UseAuthentication(); // Antes de UseAuthorization
+
             app.UseAuthorization();
             app.MapControllers();
 
@@ -99,7 +103,28 @@ namespace BookReviews.API.Extensions
                         ValidateIssuer = false,
                         ValidateAudience = false,
                         ValidateLifetime = true,
-                        ClockSkew = TimeSpan.Zero
+                        ClockSkew = TimeSpan.Zero,
+                        RoleClaimType = ClaimTypes.Role // Asegúrate de que esté configurado correctamente
+                    };
+
+                    // Añade eventos para debugging
+                    options.Events = new JwtBearerEvents
+                    {
+                        OnAuthenticationFailed = context =>
+                        {
+                            Console.WriteLine($"Autenticación fallida: {context.Exception.Message}");
+                            return Task.CompletedTask;
+                        },
+                        OnTokenValidated = context =>
+                        {
+                            Console.WriteLine("Token validado correctamente");
+                            // Puedes imprimir los claims para verificar si está presente el rol
+                            foreach (var claim in context.Principal.Claims)
+                            {
+                                Console.WriteLine($"{claim.Type}: {claim.Value}");
+                            }
+                            return Task.CompletedTask;
+                        }
                     };
                 });
         }
@@ -111,29 +136,56 @@ namespace BookReviews.API.Extensions
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Book Review API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Book Reviews API",
+                    Version = "v1",
+                    Description = "API para un sistema de reseñas de libros",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Jonatan Albenio Medina",
+                        Email = "jonatanalbeniomedina@outlook.com"
+                    }
+                });
+
+                // Incluir archivo XML de documentación
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
+                // Verificar si el archivo existe antes de incluirlo
+                if (File.Exists(xmlPath))
+                {
+                    c.IncludeXmlComments(xmlPath);
+                }
+                else
+                {
+                    // Registrar una advertencia de que falta el archivo XML
+                    Console.WriteLine($"ADVERTENCIA: Archivo de documentación XML no encontrado en {xmlPath}");
+                }
+
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    Description = "JWT Authorization header using the Bearer scheme",
+                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
                     Name = "Authorization",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = "Bearer"
                 });
+
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
+            {
+                new OpenApiSecurityScheme
                 {
+                    Reference = new OpenApiReference
                     {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                            }
-                        },
-                        Array.Empty<string>()
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
                     }
-                });
+                },
+                new string[] {}
+            }
+        });
             });
         }
 
