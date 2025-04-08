@@ -1,23 +1,22 @@
+using BookReviews.API.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Configurar Serilog
+builder.ConfigurarSerilog();
 
+// Agregar servicios a la aplicación
+builder.Services.AgregarServiciosAplicacion(builder.Configuration);
+
+// Agregar controladores
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
+// Agregar OpenAPI/Swagger
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
+// Configurar middleware
+app.ConfigurarMiddleware();
 
 app.Run();

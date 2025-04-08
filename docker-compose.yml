@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  # Servicio de base de datos PostgreSQL
+  postgres:
+    image: postgres:16
+    container_name: bookreview-postgres
+    environment:
+      POSTGRES_DB: bookreviewapp
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456Po__
+      PGDATA: /data/postgres
+    volumes:
+      - postgres-data:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - bookreview-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Servicio de administración de base de datos 
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: bookreview-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: jonatanalbeniomedina@outlook.com
+      PGADMIN_DEFAULT_PASSWORD: jonatanalbeniomedina123**
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    networks:
+      - bookreview-network
+    restart: unless-stopped
+    depends_on:
+      - postgres
+
+networks:
+  bookreview-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  pgadmin-data:
