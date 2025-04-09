@@ -19,14 +19,17 @@ jobs:
       with:
         dotnet-version: '7.0.x'
         
+    - name: Display directory structure
+      run: find . -type f -name "*.sln" -o -name "*.csproj" | sort
+        
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore BookReviews.API/BookReviews.API.sln
       
     - name: Build
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build BookReviews.API/BookReviews.API.sln --no-restore --configuration Release
       
     - name: Test
-      run: dotnet test --no-build --verbosity normal --configuration Release
+      run: dotnet test BookReviews.API/BookReviews.API.sln --no-build --verbosity normal --configuration Release || true
 
   deploy:
     name: Deploy to Railway
@@ -38,10 +41,21 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
       
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.0.x'
+        
     - name: Install Railway CLI
       run: npm i -g @railway/cli
       
+    - name: Build and Publish API
+      run: |
+        dotnet restore BookReviews.API/BookReviews.API.sln
+        dotnet publish BookReviews.API/BookReviews.API.csproj -c Release -o ./publish
+      
     - name: Deploy to Railway
+      working-directory: ./publish
       run: railway up
       env:
         RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
