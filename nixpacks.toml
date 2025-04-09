@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ['dotnet-sdk_9']
+
+[phases.build]
+cmds = [
+    'dotnet restore BookReviews.API/BookReviews.API.csproj',
+    'dotnet publish BookReviews.API/BookReviews.API.csproj -c Release -o out'
+]
+
+[phases.start]
+cmds = ['dotnet BookReviews.API.dll']

@@ -19,9 +19,6 @@ jobs:
       with:
         dotnet-version: '9.0.x'
         
-    - name: Display directory structure
-      run: find . -type f -name "*.sln" -o -name "*.csproj" | sort
-        
     - name: Restore dependencies
       run: dotnet restore BookReviews.API/BookReviews.API.sln
       
