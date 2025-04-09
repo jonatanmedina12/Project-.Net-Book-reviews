@@ -17,7 +17,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '9.0.x' # Actualizado a .NET 9.0
+        dotnet-version: '9.0.x'
         
     - name: Display directory structure
       run: find . -type f -name "*.sln" -o -name "*.csproj" | sort
@@ -36,32 +36,33 @@ jobs:
     needs: build-and-test
     if: success() && github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/railwayapp/cli:latest
     
     steps:
     - name: Checkout
       uses: actions/checkout@v3
       
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '9.0.x' # Actualizado a .NET 9.0
-        
-    - name: Install Railway CLI
-      run: npm i -g @railway/cli
-      
     - name: Build and Publish API
       run: |
+        # Instalamos .NET en el contenedor de Railway CLI
+        apt-get update
+        apt-get install -y wget apt-transport-https
+        wget https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+        dpkg -i packages-microsoft-prod.deb
+        apt-get update
+        apt-get install -y dotnet-sdk-9.0
+        
+        # Muestra la estructura de directorios para depuración
+        find . -type f -name "*.sln" -o -name "*.csproj" | sort
+        
+        # Compilar y publicar
         dotnet restore BookReviews.API/BookReviews.API.sln
-        dotnet publish BookReviews.API/BookReviews.API.csproj -c Release -o ./publish
+        dotnet publish BookReviews.API/BookReviews.API/BookReviews.API.csproj -c Release -o ./publish
       
     - name: Deploy to Railway
-      working-directory: ./publish
       run: |
-        # Inicio de sesión explícito usando el token
-        echo $RAILWAY_TOKEN | railway login --token
-        
-        # Vincular al proyecto y desplegar
-        railway link --project 173efcb3-23f6-4b6f-88b5-757442045f4d
+        # Usar Railway CLI para desplegar (ya está instalado en la imagen)
         railway up --service "Project-.Net-Book-reviews"
       env:
         RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
