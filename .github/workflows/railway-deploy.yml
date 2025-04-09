@@ -30,39 +30,32 @@ jobs:
       
     - name: Test
       run: dotnet test BookReviews.API/BookReviews.API.sln --no-build --verbosity normal --configuration Release || true
+      
+    - name: Publish
+      run: |
+        dotnet publish BookReviews.API/BookReviews.API/BookReviews.API.csproj -c Release -o ./publish
+        
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: app-publish
+        path: ./publish
 
   deploy:
     name: Deploy to Railway
     needs: build-and-test
     if: success() && github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/railwayapp/cli:latest
     
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      
-    - name: Build and Publish API
-      run: |
-        # Instalamos .NET en el contenedor de Railway CLI
-        apt-get update
-        apt-get install -y wget apt-transport-https
-        wget https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-        dpkg -i packages-microsoft-prod.deb
-        apt-get update
-        apt-get install -y dotnet-sdk-9.0
+    - name: Download artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: app-publish
+        path: ./publish
         
-        # Muestra la estructura de directorios para depuración
-        find . -type f -name "*.sln" -o -name "*.csproj" | sort
-        
-        # Compilar y publicar
-        dotnet restore BookReviews.API/BookReviews.API.sln
-        dotnet publish BookReviews.API/BookReviews.API/BookReviews.API.csproj -c Release -o ./publish
-      
     - name: Deploy to Railway
-      run: |
-        # Usar Railway CLI para desplegar (ya está instalado en la imagen)
-        railway up --service "Project-.Net-Book-reviews"
-      env:
-        RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+      uses: bervProject/railway-deploy@main
+      with:
+        railway_token: ${{ secrets.RAILWAY_TOKEN }}
+        service: "Project-.Net-Book-reviews"
