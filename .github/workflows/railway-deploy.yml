@@ -7,8 +7,8 @@ on:
     branches: [ main, master ]
     
 jobs:
-  build-and-test:
-    name: Build and Test
+  build-and-deploy:
+    name: Build and Deploy
     runs-on: ubuntu-latest
     
     steps:
@@ -35,27 +35,11 @@ jobs:
       run: |
         dotnet publish BookReviews.API/BookReviews.API/BookReviews.API.csproj -c Release -o ./publish
         
-    - name: Upload artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: app-publish
-        path: ./publish
-
-  deploy:
-    name: Deploy to Railway
-    needs: build-and-test
-    if: success() && github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: Download artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: app-publish
-        path: ./publish
+    - name: Install Railway CLI
+      run: npm i -g @railway/cli
         
     - name: Deploy to Railway
-      uses: bervProject/railway-deploy@main
-      with:
-        railway_token: ${{ secrets.RAILWAY_TOKEN }}
-        service: "Project-.Net-Book-reviews"
+        uses: bervProject/railway-deploy@main
+        with:
+          railway_token: ${{ secrets.RAILWAY_TOKEN }}
+          service: "Project-.Net-Book-reviews"
