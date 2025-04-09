@@ -33,7 +33,7 @@ jobs:
       
     - name: Publish
       run: |
-        dotnet publish BookReviews.API/BookReviews.API/BookReviews.API.csproj -c Release -o ./publish
+        dotnet publish BookReviews.API/BookReviews.API.csproj -c Release -o ./publish
         
     - name: Install Railway CLI
       run: npm i -g @railway/cli
