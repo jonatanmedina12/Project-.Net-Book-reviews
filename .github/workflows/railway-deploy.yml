@@ -56,6 +56,8 @@ jobs:
       
     - name: Deploy to Railway
       working-directory: ./publish
-      run: railway up
+      run: |
+        railway link --project 173efcb3-23f6-4b6f-88b5-757442045f4d
+        railway up --service "Project-.Net-Book-reviews"
       env:
         RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
