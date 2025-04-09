@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ['dotnet-sdk_9']
+nixPkgs = ['dotnet', 'aspnetcore-runtime']
 
 [phases.build]
 cmds = [
@@ -9,3 +9,6 @@ cmds = [
 
 [phases.start]
 cmds = ['dotnet BookReviews.API.dll']
+
+[env]
+DOTNET_VERSION = '9.0'
