@@ -17,7 +17,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '7.0.x'
+        dotnet-version: '9.0.x' # Actualizado a .NET 9.0
         
     - name: Display directory structure
       run: find . -type f -name "*.sln" -o -name "*.csproj" | sort
@@ -44,7 +44,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '7.0.x'
+        dotnet-version: '9.0.x' # Actualizado a .NET 9.0
         
     - name: Install Railway CLI
       run: npm i -g @railway/cli
