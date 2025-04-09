@@ -57,6 +57,10 @@ jobs:
     - name: Deploy to Railway
       working-directory: ./publish
       run: |
+        # Inicio de sesión explícito usando el token
+        echo $RAILWAY_TOKEN | railway login --token
+        
+        # Vincular al proyecto y desplegar
         railway link --project 173efcb3-23f6-4b6f-88b5-757442045f4d
         railway up --service "Project-.Net-Book-reviews"
       env:
