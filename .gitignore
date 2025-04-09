@@ -22,7 +22,18 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
+# Ignorar archivos .env y variantes
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.*
 
+# Ignorar archivos de configuración con credenciales
+appsettings.*.json
+!appsettings.json
+!appsettings.Example.json
 # Visual Studio cache/options directory
 .vs/
 .vscode/

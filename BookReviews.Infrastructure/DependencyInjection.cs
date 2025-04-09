@@ -9,18 +9,34 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-
 namespace BookReviews.Infrastructure
 {
     public static class DependencyInjection
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            // Configurar PostgreSQL
+            // Configurar comportamiento de PostgreSQL para compatibilidad con Supabase
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+            AppContext.SetSwitch("Npgsql.DisableDateTimeInfinityConversions", true);
+
+            // Configurar PostgreSQL con Supabase (Transaction Pooler)
             services.AddDbContext<ApplicationDbContext>(options =>
                options.UseNpgsql(
                    configuration.GetConnectionString("DefaultConnection"),
-                   b => b.MigrationsAssembly("BookReviews.API")));
+                   npgsqlOptions =>
+                   {
+                       // Especificar el ensamblado para migraciones
+                       npgsqlOptions.MigrationsAssembly("BookReviews.API");
+
+                       // Aumentar timeout para operaciones de larga duración
+                       npgsqlOptions.CommandTimeout(300);
+
+                       // Especificar la tabla de migraciones y esquema
+                       npgsqlOptions.MigrationsHistoryTable("__EFMigrationsHistory", "public");
+
+                       // Definir versión de PostgreSQL en Supabase
+                       npgsqlOptions.SetPostgresVersion(14, 0);
+                   }));
 
             // Registrar repositorios
             services.AddScoped<IBookRepository, BookRepository>();

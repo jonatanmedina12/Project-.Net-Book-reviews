@@ -1,29 +1,22 @@
 using BookReviews.API.Extensions;
-using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Configurar Serilog
 builder.ConfigurarSerilog();
 
-// Agregar servicios a la aplicación
-builder.Services.AgregarServiciosAplicacion(builder.Configuration);
-
-// Agregar controladores
+// Añadir servicios al contenedor
 builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddSingleton<IWebHostEnvironment>(builder.Environment);
-
-// Agregar OpenAPI/Swagger
-builder.Services.AddOpenApi();
+// Configurar servicios de aplicación con el flag de migraciones
+builder.Services.AgregarServiciosAplicacion(builder.Configuration);
 
 var app = builder.Build();
 
-// Configurar middleware
+// Configurar la canalización de solicitudes HTTP
 app.ConfigurarMiddleware();
 
-app.UseStaticFiles();
-
-
-
 app.Run();
+

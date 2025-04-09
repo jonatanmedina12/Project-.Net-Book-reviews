@@ -1,4 +1,5 @@
-﻿using BookReviews.Application;
+﻿using BookReviews.API.Utilities;
+using BookReviews.Application;
 using BookReviews.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -16,17 +17,55 @@ namespace BookReviews.API.Extensions
     public static class ServiciosAplicacion
     {
         /// <summary>
+        /// Carga las variables de entorno desde el archivo .env
+        /// </summary>
+        /// <param name="configuration">Configuración de la aplicación</param>
+        public static IConfiguration CargarVariablesEntorno(this IConfiguration configuration)
+        {
+            // Cargar variables de entorno desde el archivo .env
+            DotEnv.Load();
+
+            // Reemplazar variables en la configuración
+            if (Environment.GetEnvironmentVariable("DEFAULT_CONNECTION") != null)
+            {
+                configuration["ConnectionStrings:DefaultConnection"] = Environment.GetEnvironmentVariable("DEFAULT_CONNECTION");
+            }
+
+            if (Environment.GetEnvironmentVariable("DIRECT_CONNECTION") != null)
+            {
+                configuration["ConnectionStrings:DirectConnection"] = Environment.GetEnvironmentVariable("DIRECT_CONNECTION");
+            }
+
+            if (Environment.GetEnvironmentVariable("JWT_SECRET") != null)
+            {
+                configuration["JWT:Secret"] = Environment.GetEnvironmentVariable("JWT_SECRET");
+            }
+
+            if (Environment.GetEnvironmentVariable("JWT_EXPIRY_MINUTES") != null)
+            {
+                configuration["JWT:ExpiryInMinutes"] = Environment.GetEnvironmentVariable("JWT_EXPIRY_MINUTES");
+            }
+
+            return configuration;
+        }
+
+        /// <summary>
         /// Configura todos los servicios necesarios para la aplicación
         /// </summary>
         /// <param name="services">Colección de servicios</param>
         /// <param name="configuration">Configuración de la aplicación</param>
         /// <returns>La colección de servicios con todos los servicios registrados</returns>
-        public static IServiceCollection AgregarServiciosAplicacion(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AgregarServiciosAplicacion(
+            this IServiceCollection services,
+            IConfiguration configuration)
         {
+            // Cargar variables de entorno
+            configuration.CargarVariablesEntorno();
+
             // Registrar servicios de aplicación
             services.AddApplication();
 
-            // Registrar servicios de infraestructura
+            // Registrar servicios de infraestructura con el flag de migraciones
             services.AddInfrastructure(configuration);
 
             // Configurar autenticación JWT
@@ -48,6 +87,9 @@ namespace BookReviews.API.Extensions
         /// <returns>El WebApplicationBuilder configurado</returns>
         public static WebApplicationBuilder ConfigurarSerilog(this WebApplicationBuilder builder)
         {
+            // Cargar variables de entorno antes de configurar Serilog
+            builder.Configuration.CargarVariablesEntorno();
+
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(builder.Configuration)
                 .Enrich.FromLogContext()
@@ -173,19 +215,19 @@ namespace BookReviews.API.Extensions
                 });
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
-        {
-            {
-                new OpenApiSecurityScheme
                 {
-                    Reference = new OpenApiReference
                     {
-                        Type = ReferenceType.SecurityScheme,
-                        Id = "Bearer"
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] {}
                     }
-                },
-                new string[] {}
-            }
-        });
+                });
             });
         }
 
