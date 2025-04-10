@@ -77,7 +77,7 @@
         /// </summary>
         /// <param name="isRailway">Indica si estamos en Railway</param>
         /// <returns>Ruta al archivo .env</returns>
-        private static string FindEnvFile(bool isRailway)
+        public static string FindEnvFile(bool isRailway) // Cambiado de private a public
         {
             // Lista de posibles ubicaciones para el archivo .env
             List<string> possibleLocations = new List<string>();
