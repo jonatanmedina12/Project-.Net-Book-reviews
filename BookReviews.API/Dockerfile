@@ -1,4 +1,4 @@
-# Imagen de build
+# Imagen de build de .NET 9.0
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /app
 
@@ -19,14 +19,16 @@ COPY . .
 WORKDIR "/app/BookReviews.API"
 RUN dotnet publish "BookReviews.API.csproj" -c Release -o /app/publish
 
-# Imagen de runtime
+# Imagen de runtime de .NET 9.0
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
 COPY --from=build /app/publish .
 
-# Configurar puertos
-EXPOSE 80
-EXPOSE 443
+# Configurar variables de entorno para el puerto dinámico
+ENV ASPNETCORE_URLS=http://0.0.0.0:$PORT
+
+# Exponer puerto
+EXPOSE $PORT
 
 # Comando de inicio
 ENTRYPOINT ["dotnet", "BookReviews.API.dll"]

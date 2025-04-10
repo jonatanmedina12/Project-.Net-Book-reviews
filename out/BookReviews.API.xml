@@ -1,0 +1,406 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BookReviews.API</name>
+    </assembly>
+    <members>
+        <member name="M:BookReviews.API.Controllers.AuthController.#ctor(BookReviews.Application.Interfaces.IAuthService)">
+            <summary>
+            Constructor del controlador de autenticación
+            </summary>
+            <param name="authService">Servicio de autenticación</param>
+        </member>
+        <member name="M:BookReviews.API.Controllers.AuthController.Register(BookReviews.Application.DTOs.RegisterDto)">
+            <summary>
+            Registra un nuevo usuario en el sistema
+            </summary>
+            <param name="registerDto">Datos de registro del usuario</param>
+            <returns>Información del usuario registrado</returns>
+            <response code="201">Usuario registrado correctamente</response>
+            <response code="400">Datos de registro inválidos</response>
+        </member>
+        <member name="M:BookReviews.API.Controllers.AuthController.Login(BookReviews.Application.DTOs.LoginDto)">
+            <summary>
+            Autentica a un usuario y genera un token JWT
+            </summary>
+            <param name="loginDto">Credenciales de inicio de sesión</param>
+            <returns>Token de autenticación</returns>
+            <response code="200">Inicio de sesión exitoso</response>
+            <response code="401">Credenciales inválidas</response>
+        </member>
+        <member name="M:BookReviews.API.Controllers.AuthController.ForgotPassword(BookReviews.Application.DTOs.ForgotPasswordDto)">
+            <summary>
+            Solicita un restablecimiento de contraseña
+            </summary>
+            <param name="forgotPasswordDto">Email del usuario</param>
+            <returns>Mensaje de confirmación</returns>
+            <response code="200">Solicitud procesada correctamente</response>
+            <response code="400">Email no encontrado o inválido</response>
+        </member>
+        <member name="M:BookReviews.API.Controllers.AuthController.ResetPassword(BookReviews.Application.DTOs.ResetPasswordDto)">
+            <summary>
+            Restablece la contraseña de un usuario
+            </summary>
+            <param name="resetPasswordDto">Datos para restablecer la contraseña</param>
+            <returns>Mensaje de confirmación</returns>
+            <response code="200">Contraseña restablecida con éxito</response>
+            <response code="400">Datos inválidos o token expirado</response>
+        </member>
+        <member name="M:BookReviews.API.Controllers.BookController.#ctor(BookReviews.Application.Interfaces.IBookService)">
+            <summary>
+            Constructor del controlador de libros
+            </summary>
+            <param name="bookService">Servicio de libros</param>
+        </member>
+        <member name="M:BookReviews.API.Controllers.BookController.GetAllBooks(System.String,System.Nullable{System.Int32})">
+            <summary>
+            Obtiene todos los libros con filtros opcionales
+            </summary>
+            <param name="searchTerm">Término de búsqueda para filtrar libros</param>
+            <param name="categoryId">ID de categoría para filtrar libros</param>
+            <returns>Lista de libros que coinciden con los criterios</returns>
+            <response code="200">Libros obtenidos correctamente</response>
+        </member>
+        <member name="M:BookReviews.API.Controllers.BookController.GetBookById(System.Int32)">
+            <summary>
+            Obtiene un libro por su ID
+            </summary>
+            <param name="id">ID del libro a obtener</param>
+            <returns>Información detallada del libro</returns>
+            <response code="200">Libro encontrado correctamente</response>
+            <response code="404">Libro no encontrado</response>
+        </member>
+        <member name="M:BookReviews.API.Controllers.BookController.CreateBook(BookReviews.Application.DTOs.BookDto)">
+            <summary>
+            Crea un nuevo libro en el sistema
+            </summary>
+            <param name="bookDto">Datos del libro a crear</param>
+            <returns>Información del libro creado</returns>
+            <response code="201">Libro creado correctamente</response>
+            <response code="400">Datos del libro inválidos</response>
+            <response code="401">Usuario no autenticado</response>
+            <response code="403">Usuario no autorizado</response>
+        </member>
+        <member name="M:BookReviews.API.Controllers.BookController.UpdateBook(System.Int32,BookReviews.Application.DTOs.BookDto)">
+            <summary>
+            Actualiza la información de un libro existente
+            </summary>
+            <param name="id">ID del libro a actualizar</param>
+            <param name="bookDto">Nuevos datos del libro</param>
+            <returns>Resultado de la operación</returns>
+            <response code="204">Libro actualizado correctamente</response>
+            <response code="400">ID no coincide con el libro o datos inválidos</response>
+            <response code="401">Usuario no autenticado</response>
+            <response code="403">Usuario no autorizado</response>
+            <response code="404">Libro no encontrado</response>
+        </member>
+        <member name="M:BookReviews.API.Controllers.BookController.DeleteBook(System.Int32)">
+            <summary>
+            Elimina un libro del sistema
+            </summary>
+            <param name="id">ID del libro a eliminar</param>
+            <returns>Resultado de la operación</returns>
+            <response code="204">Libro eliminado correctamente</response>
+            <response code="401">Usuario no autenticado</response>
+            <response code="403">Usuario no autorizado</response>
+            <response code="404">Libro no encontrado</response>
+        </member>
+        <member name="M:BookReviews.API.Controllers.CategoryController.#ctor(BookReviews.Application.Interfaces.ICategoryService)">
+            <summary>
+            Constructor del controlador de categorías
+            </summary>
+            <param name="categoryService">Servicio de categorías</param>
+        </member>
+        <member name="M:BookReviews.API.Controllers.CategoryController.GetAllCategories">
+            <summary>
+            Obtiene todas las categorías disponibles
+            </summary>
+            <returns>Lista de categorías</returns>
+            <response code="200">Categorías obtenidas correctamente</response>
+        </member>
+        <member name="M:BookReviews.API.Controllers.CategoryController.GetCategoryById(System.Int32)">
+            <summary>
+            Obtiene una categoría por su ID
+            </summary>
+            <param name="id">ID de la categoría a obtener</param>
+            <returns>Información de la categoría</returns>
+            <response code="200">Categoría encontrada correctamente</response>
+            <response code="404">Categoría no encontrada</response>
+        </member>
+        <member name="M:BookReviews.API.Controllers.CategoryController.CreateCategory(BookReviews.Application.DTOs.CategoryDto)">
+            <summary>
+            Crea una nueva categoría
+            </summary>
+            <param name="categoryDto">Datos de la categoría a crear</param>
+            <returns>Información de la categoría creada</returns>
+            <response code="201">Categoría creada correctamente</response>
+            <response code="400">Datos de la categoría inválidos</response>
+            <response code="401">Usuario no autenticado</response>
+            <response code="403">Usuario no autorizado</response>
+        </member>
+        <member name="M:BookReviews.API.Controllers.CategoryController.UpdateCategory(System.Int32,BookReviews.Application.DTOs.CategoryDto)">
+            <summary>
+            Actualiza una categoría existente
+            </summary>
+            <param name="id">ID de la categoría a actualizar</param>
+            <param name="categoryDto">Nuevos datos de la categoría</param>
+            <returns>Resultado de la operación</returns>
+            <response code="204">Categoría actualizada correctamente</response>
+            <response code="400">ID no coincide con la categoría o datos inválidos</response>
+            <response code="401">Usuario no autenticado</response>
+            <response code="403">Usuario no autorizado</response>
+            <response code="404">Categoría no encontrada</response>
+        </member>
+        <member name="M:BookReviews.API.Controllers.CategoryController.DeleteCategory(System.Int32)">
+            <summary>
+            Elimina una categoría
+            </summary>
+            <param name="id">ID de la categoría a eliminar</param>
+            <returns>Resultado de la operación</returns>
+            <response code="204">Categoría eliminada correctamente</response>
+            <response code="400">No se puede eliminar la categoría debido a restricciones</response>
+            <response code="401">Usuario no autenticado</response>
+            <response code="403">Usuario no autorizado</response>
+            <response code="404">Categoría no encontrada</response>
+        </member>
+        <member name="M:BookReviews.API.Controllers.ReviewController.#ctor(BookReviews.Application.Services.IReviewService)">
+            <summary>
+            Constructor del controlador de reseñas
+            </summary>
+            <param name="reviewService">Servicio de reseñas</param>
+        </member>
+        <member name="M:BookReviews.API.Controllers.ReviewController.GetBookReviews(System.Int32)">
+            <summary>
+            Obtiene todas las reseñas de un libro específico
+            </summary>
+            <param name="bookId">ID del libro para obtener sus reseñas</param>
+            <returns>Lista de reseñas del libro</returns>
+            <response code="200">Reseñas obtenidas correctamente</response>
+            <response code="404">Libro no encontrado</response>
+        </member>
+        <member name="M:BookReviews.API.Controllers.ReviewController.GetUserReviews">
+            <summary>
+            Obtiene todas las reseñas del usuario actual
+            </summary>
+            <returns>Lista de reseñas del usuario</returns>
+            <response code="200">Reseñas obtenidas correctamente</response>
+            <response code="401">Usuario no autenticado</response>
+        </member>
+        <member name="M:BookReviews.API.Controllers.ReviewController.CreateReview(BookReviews.Application.DTOs.ReviewDto)">
+            <summary>
+            Crea una nueva reseña para un libro
+            </summary>
+            <param name="reviewDto">Datos de la reseña a crear</param>
+            <returns>Información de la reseña creada</returns>
+            <response code="201">Reseña creada correctamente</response>
+            <response code="400">Datos de la reseña inválidos o ya existe una reseña del usuario para este libro</response>
+            <response code="401">Usuario no autenticado</response>
+        </member>
+        <member name="M:BookReviews.API.Controllers.ReviewController.UpdateReview(System.Int32,BookReviews.Application.DTOs.ReviewDto)">
+            <summary>
+            Actualiza una reseña existente del usuario actual
+            </summary>
+            <param name="id">ID de la reseña a actualizar</param>
+            <param name="reviewDto">Nuevos datos de la reseña</param>
+            <returns>Resultado de la operación</returns>
+            <response code="204">Reseña actualizada correctamente</response>
+            <response code="400">ID no coincide con la reseña o datos inválidos</response>
+            <response code="401">Usuario no autenticado</response>
+            <response code="403">La reseña no pertenece al usuario actual</response>
+            <response code="404">Reseña no encontrada</response>
+        </member>
+        <member name="M:BookReviews.API.Controllers.ReviewController.DeleteReview(System.Int32)">
+            <summary>
+            Elimina una reseña del usuario actual
+            </summary>
+            <param name="id">ID de la reseña a eliminar</param>
+            <returns>Resultado de la operación</returns>
+            <response code="204">Reseña eliminada correctamente</response>
+            <response code="401">Usuario no autenticado</response>
+            <response code="403">La reseña no pertenece al usuario actual</response>
+            <response code="404">Reseña no encontrada</response>
+        </member>
+        <member name="M:BookReviews.API.Controllers.ReviewController.GetCurrentUserId">
+            <summary>
+            Obtiene el ID del usuario actual a partir de los claims
+            </summary>
+            <returns>ID del usuario autenticado</returns>
+            <exception cref="T:System.InvalidOperationException">Si no se puede obtener el ID del usuario</exception>
+        </member>
+        <member name="M:BookReviews.API.Controllers.UserController.#ctor(BookReviews.Application.Interfaces.IUserService)">
+            <summary>
+            Constructor del controlador de usuarios
+            </summary>
+            <param name="userService">Servicio de usuarios</param>
+        </member>
+        <member name="M:BookReviews.API.Controllers.UserController.GetUserProfile">
+            <summary>
+            Obtiene el perfil del usuario actual
+            </summary>
+            <returns>Información del perfil del usuario</returns>
+            <response code="200">Perfil obtenido correctamente</response>
+            <response code="401">Usuario no autenticado</response>
+            <response code="404">Usuario no encontrado</response>
+        </member>
+        <member name="M:BookReviews.API.Controllers.UserController.UpdateUserProfile(BookReviews.Application.DTOs.UpdateProfileDto)">
+            <summary>
+            Actualiza la información del perfil del usuario actual
+            </summary>
+            <param name="updateProfileDto">Datos actualizados del perfil</param>
+            <returns>Resultado de la operación</returns>
+            <response code="204">Perfil actualizado correctamente</response>
+            <response code="400">Datos del perfil inválidos</response>
+            <response code="401">Usuario no autenticado</response>
+            <response code="404">Usuario no encontrado</response>
+        </member>
+        <member name="M:BookReviews.API.Controllers.UserController.ChangePassword(BookReviews.Application.DTOs.ChangePasswordDto)">
+            <summary>
+            Cambia la contraseña del usuario actual
+            </summary>
+            <param name="changePasswordDto">Datos de cambio de contraseña</param>
+            <returns>Resultado de la operación</returns>
+            <response code="204">Contraseña cambiada correctamente</response>
+            <response code="400">Datos inválidos o contraseña actual incorrecta</response>
+            <response code="401">Usuario no autenticado</response>
+            <response code="404">Usuario no encontrado</response>
+        </member>
+        <member name="M:BookReviews.API.Controllers.UserController.GetCurrentUserId">
+            <summary>
+            Obtiene el ID del usuario actual a partir de los claims
+            </summary>
+            <returns>ID del usuario autenticado</returns>
+            <exception cref="T:System.InvalidOperationException">Si no se puede obtener el ID del usuario</exception>
+        </member>
+        <member name="T:BookReviews.API.Extensions.ServiciosAplicacion">
+            <summary>
+            Clase estática que contiene extensiones para configurar servicios de la aplicación
+            </summary>
+        </member>
+        <member name="M:BookReviews.API.Extensions.ServiciosAplicacion.CargarVariablesEntorno(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Carga las variables de entorno desde el archivo .env
+            </summary>
+            <param name="configuration">Configuración de la aplicación</param>
+        </member>
+        <member name="M:BookReviews.API.Extensions.ServiciosAplicacion.AgregarServiciosAplicacion(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Configura todos los servicios necesarios para la aplicación
+            </summary>
+            <param name="services">Colección de servicios</param>
+            <param name="configuration">Configuración de la aplicación</param>
+            <returns>La colección de servicios con todos los servicios registrados</returns>
+        </member>
+        <member name="M:BookReviews.API.Extensions.ServiciosAplicacion.ConfigurarSerilog(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            Configura Serilog para el registro de logs
+            </summary>
+            <param name="builder">WebApplicationBuilder</param>
+            <returns>El WebApplicationBuilder configurado</returns>
+        </member>
+        <member name="M:BookReviews.API.Extensions.ServiciosAplicacion.ConfigurarMiddleware(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            Configura el middleware de la aplicación
+            </summary>
+            <param name="app">WebApplication</param>
+            <returns>El WebApplication configurado</returns>
+        </member>
+        <member name="M:BookReviews.API.Extensions.ServiciosAplicacion.ConfigurarAutenticacionJWT(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Configura la autenticación JWT
+            </summary>
+        </member>
+        <member name="M:BookReviews.API.Extensions.ServiciosAplicacion.ConfigurarSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configura Swagger para la documentación de la API
+            </summary>
+        </member>
+        <member name="M:BookReviews.API.Extensions.ServiciosAplicacion.ConfigurarCORS(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configura la política CORS
+            </summary>
+        </member>
+        <member name="T:BookReviews.API.Migrations.InitialCreate">
+            <inheritdoc />
+        </member>
+        <member name="M:BookReviews.API.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BookReviews.API.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BookReviews.API.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:BookReviews.API.Migrations.InitialMigration">
+            <inheritdoc />
+        </member>
+        <member name="M:BookReviews.API.Migrations.InitialMigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BookReviews.API.Migrations.InitialMigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BookReviews.API.Migrations.InitialMigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:BookReviews.API.Migrations.InitialMigration2">
+            <inheritdoc />
+        </member>
+        <member name="M:BookReviews.API.Migrations.InitialMigration2.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BookReviews.API.Migrations.InitialMigration2.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BookReviews.API.Migrations.InitialMigration2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:BookReviews.API.Migrations.addFields">
+            <inheritdoc />
+        </member>
+        <member name="M:BookReviews.API.Migrations.addFields.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BookReviews.API.Migrations.addFields.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BookReviews.API.Migrations.addFields.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:BookReviews.API.Migrations.InitialCreate_Base_server">
+            <inheritdoc />
+        </member>
+        <member name="M:BookReviews.API.Migrations.InitialCreate_Base_server.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BookReviews.API.Migrations.InitialCreate_Base_server.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BookReviews.API.Migrations.InitialCreate_Base_server.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:BookReviews.API.Migrations.InitialCreate_Base_server2">
+            <inheritdoc />
+        </member>
+        <member name="M:BookReviews.API.Migrations.InitialCreate_Base_server2.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BookReviews.API.Migrations.InitialCreate_Base_server2.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BookReviews.API.Migrations.InitialCreate_Base_server2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:BookReviews.API.Utilities.DotEnv">
+            <summary>
+            Utilidad para cargar variables de entorno desde un archivo .env
+            </summary>
+        </member>
+        <member name="M:BookReviews.API.Utilities.DotEnv.Load(System.String)">
+            <summary>
+            Carga variables de entorno desde el archivo .env
+            </summary>
+            <param name="filePath">Ruta al archivo .env. Por defecto, busca en el directorio raíz del proyecto.</param>
+        </member>
+    </members>
+</doc>
