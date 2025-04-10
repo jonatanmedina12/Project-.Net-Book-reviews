@@ -7,7 +7,6 @@
     "deploy": {
       "startCommand": "dotnet BookReviews.API.dll",
       "healthcheckPath": "/health",
-      "healthcheckTimeout": 300,
-      "restartPolicyType": "on-failure"
+      "healthcheckTimeout": 300
     }
   }
