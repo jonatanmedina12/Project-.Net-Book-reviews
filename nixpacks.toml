@@ -1,14 +1,10 @@
-[phases.setup]
-nixPkgs = ['dotnet', 'aspnetcore-runtime']
+[build]
+builder = "nixpacks"
 
-[phases.build]
-cmds = [
-    'dotnet restore BookReviews.API/BookReviews.API.csproj',
-    'dotnet publish BookReviews.API/BookReviews.API.csproj -c Release -o out'
-]
-
-[phases.start]
-cmds = ['dotnet BookReviews.API.dll']
+[deploy]
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3
 
 [env]
-DOTNET_VERSION = '9.0'
+DOTNET_VERSION = "9.0"
+ASPNETCORE_ENVIRONMENT = "Production"
