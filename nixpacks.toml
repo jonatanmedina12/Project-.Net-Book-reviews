@@ -1,10 +1,18 @@
 [build]
-builder = "nixpacks"
+cmd = "dotnet publish BookReviews.API/BookReviews.API.csproj -c Release -o ./out"
 
-[deploy]
-restartPolicyType = "ON_FAILURE"
-restartPolicyMaxRetries = 3
+[start]
+cmd = "cd /app/out && dotnet BookReviews.API.dll"
+
+[phases]
+setup = ["dotnet"]
+build = [
+    "dotnet restore BookReviews.API/BookReviews.API.csproj", 
+    "dotnet publish BookReviews.API/BookReviews.API.csproj -c Release -o ./out"
+]
+start = ["dotnet BookReviews.API.dll"]
 
 [env]
 DOTNET_VERSION = "9.0"
 ASPNETCORE_ENVIRONMENT = "Production"
+ASPNETCORE_URLS = "http://0.0.0.0:$PORT"
