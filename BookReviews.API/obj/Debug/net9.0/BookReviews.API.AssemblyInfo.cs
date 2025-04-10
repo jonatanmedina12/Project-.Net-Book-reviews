@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BookReviews.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e1a9c4fd2eb23468f62e411cc607fad3615ad580")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+80c0cfc6b7474c9d5d01352cb98e8f477d1d684a")]
 [assembly: System.Reflection.AssemblyProductAttribute("BookReviews.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BookReviews.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

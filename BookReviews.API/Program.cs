@@ -1,20 +1,18 @@
 using BookReviews.API.Extensions;
 using BookReviews.API.Utilities;
-
 var builder = WebApplication.CreateBuilder(args);
 
-// Primero, verificar explícitamente las variables de entorno de Railway
-Console.WriteLine("Verificando variables de entorno de Railway:");
-Console.WriteLine($"DEFAULT_CONNECTION presente: {!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("DEFAULT_CONNECTION"))}");
-Console.WriteLine($"DIRECT_CONNECTION presente: {!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("DIRECT_CONNECTION"))}");
-Console.WriteLine($"JWT_SECRET presente: {!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("JWT_SECRET"))}");
-Console.WriteLine($"JWT_EXPIRY_MINUTES: {Environment.GetEnvironmentVariable("JWT_EXPIRY_MINUTES")}");
+// Primero cargar variables de entorno desde .env
+DotEnv.Load();
 
-// Añadir variables de entorno primero
+// Luego agregar configuración de variables de entorno
 builder.Configuration.AddEnvironmentVariables();
 
-// Cargar variables desde .env si estamos en desarrollo
-DotEnv.Load();
+// Imprimir variables importantes para debugging
+Console.WriteLine("Variables de entorno después de la carga:");
+Console.WriteLine($"DEFAULT_CONNECTION presente: {!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("DEFAULT_CONNECTION"))}");
+Console.WriteLine($"JWT_SECRET presente: {!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("JWT_SECRET"))}");
+
 // Configurar Serilog
 builder.ConfigurarSerilog();
 
@@ -22,13 +20,11 @@ builder.ConfigurarSerilog();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-// Configurar servicios de aplicación con el flag de migraciones
+// Configurar servicios de aplicación
 builder.Services.AgregarServiciosAplicacion(builder.Configuration);
 
 var app = builder.Build();
 
 // Configurar la canalización de solicitudes HTTP
 app.ConfigurarMiddleware();
-
 app.Run();
-
