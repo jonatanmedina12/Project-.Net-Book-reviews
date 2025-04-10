@@ -22,28 +22,41 @@ namespace BookReviews.API.Extensions
         /// <param name="configuration">Configuración de la aplicación</param>
         public static IConfiguration CargarVariablesEntorno(this IConfiguration configuration)
         {
-            // Cargar variables de entorno desde el archivo .env
-            DotEnv.Load();
+            // No necesitamos cargar DotEnv.Load() aquí, ya lo hicimos en Program.cs
 
-            // Reemplazar variables en la configuración
+            // Verificar si estamos en Railway
+            bool isRailway = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("RAILWAY_SERVICE_NAME")) ||
+                             !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("RAILWAY_STATIC_URL"));
+
+            // Si estamos en Railway, las variables ya deberían estar disponibles
+            if (isRailway)
+            {
+                Console.WriteLine("Detectado entorno Railway. Usando variables de entorno proporcionadas por Railway.");
+            }
+
+            // Reemplazar variables en la configuración (esto funciona tanto para .env como para Railway)
             if (Environment.GetEnvironmentVariable("DEFAULT_CONNECTION") != null)
             {
                 configuration["ConnectionStrings:DefaultConnection"] = Environment.GetEnvironmentVariable("DEFAULT_CONNECTION");
+                Console.WriteLine("Variable DEFAULT_CONNECTION cargada correctamente.");
             }
 
             if (Environment.GetEnvironmentVariable("DIRECT_CONNECTION") != null)
             {
                 configuration["ConnectionStrings:DirectConnection"] = Environment.GetEnvironmentVariable("DIRECT_CONNECTION");
+                Console.WriteLine("Variable DIRECT_CONNECTION cargada correctamente.");
             }
 
             if (Environment.GetEnvironmentVariable("JWT_SECRET") != null)
             {
                 configuration["JWT:Secret"] = Environment.GetEnvironmentVariable("JWT_SECRET");
+                Console.WriteLine("Variable JWT_SECRET cargada correctamente.");
             }
 
             if (Environment.GetEnvironmentVariable("JWT_EXPIRY_MINUTES") != null)
             {
                 configuration["JWT:ExpiryInMinutes"] = Environment.GetEnvironmentVariable("JWT_EXPIRY_MINUTES");
+                Console.WriteLine("Variable JWT_EXPIRY_MINUTES cargada correctamente.");
             }
 
             return configuration;

@@ -3,8 +3,23 @@
   "WorkspaceRootPath": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|d:\\repositorios\\project-.net-book-reviews\\bookreviews.api\\utilities\\dotenv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|solutionrelative:utilities\\dotenv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|d:\\repositorios\\project-.net-book-reviews\\bookreviews.api\\extensions\\serviciosaplicacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|solutionrelative:extensions\\serviciosaplicacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|d:\\repositorios\\project-.net-book-reviews\\bookreviews.api\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|solutionrelative:.env||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EFA002E-73E2-467B-A589-FA0B2E132CF9}|..\\BookReviews.Infrastructure\\BookReviews.Infrastructure.csproj|d:\\repositorios\\project-.net-book-reviews\\bookreviews.infrastructure\\data\\configurations\\userconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|d:\\repositorios\\project-.net-book-reviews\\bookreviews.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|d:\\repositorios\\project-.net-book-reviews\\bookreviews.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -15,34 +30,15 @@
       "RelativeMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|solutionrelative:appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|d:\\repositorios\\project-.net-book-reviews\\bookreviews.api\\utilities\\dotenv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|solutionrelative:utilities\\dotenv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|d:\\repositorios\\project-.net-book-reviews\\bookreviews.api\\appsettings.examples.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|solutionrelative:appsettings.examples.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|d:\\repositorios\\project-.net-book-reviews\\bookreviews.api\\extensions\\serviciosaplicacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|solutionrelative:extensions\\serviciosaplicacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|d:\\repositorios\\project-.net-book-reviews\\bookreviews.api\\logs\\bookreview-20250409.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|solutionrelative:logs\\bookreview-20250409.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|d:\\repositorios\\project-.net-book-reviews\\bookreviews.api\\bookreviews.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
       "RelativeMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|solutionrelative:bookreviews.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|d:\\repositorios\\project-.net-book-reviews\\bookreviews.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3EFA002E-73E2-467B-A589-FA0B2E132CF9}|..\\BookReviews.Infrastructure\\BookReviews.Infrastructure.csproj|d:\\repositorios\\project-.net-book-reviews\\bookreviews.infrastructure\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3EFA002E-73E2-467B-A589-FA0B2E132CF9}|..\\BookReviews.Infrastructure\\BookReviews.Infrastructure.csproj|d:\\repositorios\\project-.net-book-reviews\\bookreviews.infrastructure\\data\\configurations\\userconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3EFA002E-73E2-467B-A589-FA0B2E132CF9}|..\\BookReviews.Infrastructure\\BookReviews.Infrastructure.csproj|d:\\repositorios\\project-.net-book-reviews\\bookreviews.infrastructure\\data\\configurations\\reviewconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -108,11 +104,11 @@
       "RelativeMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|d:\\repositorios\\project-.net-book-reviews\\bookreviews.api\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|solutionrelative:dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{B14E4D75-4626-4347-B825-15B4A099B9DF}|..\\BookReviews.Application\\BookReviews.Application.csproj|d:\\repositorios\\project-.net-book-reviews\\bookreviews.application\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B14E4D75-4626-4347-B825-15B4A099B9DF}|..\\BookReviews.Application\\BookReviews.Application.csproj|d:\\repositorios\\project-.net-book-reviews\\bookreviews.application\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\Dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -122,24 +118,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
+              "Title": ".env",
+              "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\.env",
+              "RelativeDocumentMoniker": ".env",
+              "ToolTip": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\.env",
+              "RelativeToolTip": ".env",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-04-10T00:56:29.274Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "ServiciosAplicacion.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\Extensions\\ServiciosAplicacion.cs",
               "RelativeDocumentMoniker": "Extensions\\ServiciosAplicacion.cs",
               "ToolTip": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\Extensions\\ServiciosAplicacion.cs",
               "RelativeToolTip": "Extensions\\ServiciosAplicacion.cs",
-              "ViewState": "AgIAAIIAAAAAAAAAAAArwJEAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAjwJUAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-09T20:12:46.087Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "BookReviews.API.http",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\BookReviews.API.http",
               "RelativeDocumentMoniker": "BookReviews.API.http",
@@ -147,12 +156,11 @@
               "RelativeToolTip": "BookReviews.API.http",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2025-04-09T20:08:24.224Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-09T20:08:24.224Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -160,18 +168,17 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-09T20:02:18.133Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-09T20:02:18.133Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "DotEnv.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\Utilities\\DotEnv.cs",
               "RelativeDocumentMoniker": "Utilities\\DotEnv.cs",
               "ToolTip": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\Utilities\\DotEnv.cs",
               "RelativeToolTip": "Utilities\\DotEnv.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAEAAAAAAAAAAADwvxUAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-09T21:00:27.918Z",
               "EditorCaption": ""
@@ -186,25 +193,11 @@
               "RelativeToolTip": "..\\BookReviews.Infrastructure\\DependencyInjection.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAwBsAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T20:12:58.953Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-09T20:12:58.953Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": ".env",
-              "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\.env",
-              "RelativeDocumentMoniker": ".env",
-              "ToolTip": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\.env",
-              "RelativeToolTip": ".env",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-04-09T21:09:35.863Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\appsettings.Development.json",
               "RelativeDocumentMoniker": "appsettings.Development.json",
@@ -212,12 +205,11 @@
               "RelativeToolTip": "appsettings.Development.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-09T20:09:08.291Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-09T20:09:08.291Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "appsettings.Examples.json",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\appsettings.Examples.json",
               "RelativeDocumentMoniker": "appsettings.Examples.json",
@@ -225,38 +217,24 @@
               "RelativeToolTip": "appsettings.Examples.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-09T21:07:00.295Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-09T21:07:00.295Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-08T19:12:11.479Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "bookreview-20250409.txt",
-              "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\logs\\bookreview-20250409.txt",
-              "RelativeDocumentMoniker": "logs\\bookreview-20250409.txt",
-              "ToolTip": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\logs\\bookreview-20250409.txt",
-              "RelativeToolTip": "logs\\bookreview-20250409.txt",
-              "ViewState": "AgIAAGMAAAAAAAAAAAAAABMAAABfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-04-09T21:07:29.408Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 3,
               "Title": "UserConfiguration.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Infrastructure\\Data\\Configurations\\UserConfiguration.cs",
               "RelativeDocumentMoniker": "..\\BookReviews.Infrastructure\\Data\\Configurations\\UserConfiguration.cs",
@@ -269,7 +247,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 18,
               "Title": "IdentityService.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Infrastructure\\Identity\\IdentityService.cs",
               "RelativeDocumentMoniker": "..\\BookReviews.Infrastructure\\Identity\\IdentityService.cs",
@@ -277,12 +255,11 @@
               "RelativeToolTip": "..\\BookReviews.Infrastructure\\Identity\\IdentityService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T20:36:13.826Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-09T20:36:13.826Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 16,
               "Title": "Category.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Domain\\Entities\\Category.cs",
               "RelativeDocumentMoniker": "..\\BookReviews.Domain\\Entities\\Category.cs",
@@ -290,12 +267,11 @@
               "RelativeToolTip": "..\\BookReviews.Domain\\Entities\\Category.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAIwCEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T20:36:39.547Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-09T20:36:39.547Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 13,
               "Title": "User.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Domain\\Entities\\User.cs",
               "RelativeDocumentMoniker": "..\\BookReviews.Domain\\Entities\\User.cs",
@@ -303,12 +279,11 @@
               "RelativeToolTip": "..\\BookReviews.Domain\\Entities\\User.cs",
               "ViewState": "AgIAADgAAAAAAAAAAAAuwEYAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T20:36:45.034Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-09T20:36:45.034Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 11,
               "Title": "CategoryConfiguration.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Infrastructure\\Data\\Configurations\\CategoryConfiguration.cs",
               "RelativeDocumentMoniker": "..\\BookReviews.Infrastructure\\Data\\Configurations\\CategoryConfiguration.cs",
@@ -316,12 +291,11 @@
               "RelativeToolTip": "..\\BookReviews.Infrastructure\\Data\\Configurations\\CategoryConfiguration.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAAwBwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T20:37:10.744Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-09T20:37:10.744Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 10,
               "Title": "ReviewConfiguration.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Infrastructure\\Data\\Configurations\\ReviewConfiguration.cs",
               "RelativeDocumentMoniker": "..\\BookReviews.Infrastructure\\Data\\Configurations\\ReviewConfiguration.cs",
@@ -329,12 +303,11 @@
               "RelativeToolTip": "..\\BookReviews.Infrastructure\\Data\\Configurations\\ReviewConfiguration.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAkwCkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T20:37:21.757Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-09T20:37:21.757Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 15,
               "Title": "Rating.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Domain\\Entities\\Rating.cs",
               "RelativeDocumentMoniker": "..\\BookReviews.Domain\\Entities\\Rating.cs",
@@ -342,12 +315,11 @@
               "RelativeToolTip": "..\\BookReviews.Domain\\Entities\\Rating.cs",
               "ViewState": "AgIAAB8AAAAAAAAAAAAYwDsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T19:20:36.445Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T19:20:36.445Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 14,
               "Title": "Review.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Domain\\Entities\\Review.cs",
               "RelativeDocumentMoniker": "..\\BookReviews.Domain\\Entities\\Review.cs",
@@ -355,12 +327,11 @@
               "RelativeToolTip": "..\\BookReviews.Domain\\Entities\\Review.cs",
               "ViewState": "AgIAAFkAAAAAAAAAAAAAwHQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T19:20:53.482Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T19:20:53.482Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 12,
               "Title": "BookConfiguration.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Infrastructure\\Data\\Configurations\\BookConfiguration.cs",
               "RelativeDocumentMoniker": "..\\BookReviews.Infrastructure\\Data\\Configurations\\BookConfiguration.cs",
@@ -368,12 +339,11 @@
               "RelativeToolTip": "..\\BookReviews.Infrastructure\\Data\\Configurations\\BookConfiguration.cs",
               "ViewState": "AgIAABcAAAAAAAAAAAAkwDQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T18:42:32.907Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T18:42:32.907Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 24,
               "Title": "MappingProfile.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Application\\Mappings\\MappingProfile.cs",
               "RelativeDocumentMoniker": "..\\BookReviews.Application\\Mappings\\MappingProfile.cs",
@@ -381,12 +351,11 @@
               "RelativeToolTip": "..\\BookReviews.Application\\Mappings\\MappingProfile.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAxwB8AAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T18:29:55.671Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T18:29:55.671Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 19,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Infrastructure\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "..\\BookReviews.Infrastructure\\Data\\ApplicationDbContext.cs",
@@ -394,12 +363,11 @@
               "RelativeToolTip": "..\\BookReviews.Infrastructure\\Data\\ApplicationDbContext.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAwB0AAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T20:15:00.811Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-09T20:15:00.811Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 17,
               "Title": "Book.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Domain\\Entities\\Book.cs",
               "RelativeDocumentMoniker": "..\\BookReviews.Domain\\Entities\\Book.cs",
@@ -407,12 +375,11 @@
               "RelativeToolTip": "..\\BookReviews.Domain\\Entities\\Book.cs",
               "ViewState": "AgIAAJQAAAAAAAAAAAAYwLAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T18:23:25.173Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T18:23:25.173Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 26,
               "Title": "DependencyInjection.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Application\\DependencyInjection.cs",
               "RelativeDocumentMoniker": "..\\BookReviews.Application\\DependencyInjection.cs",
@@ -420,12 +387,11 @@
               "RelativeToolTip": "..\\BookReviews.Application\\DependencyInjection.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAmwB4AAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T19:09:13.457Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T19:09:13.457Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 20,
               "Title": "TestController.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\Controllers\\TestController.cs",
               "RelativeDocumentMoniker": "Controllers\\TestController.cs",
@@ -433,12 +399,11 @@
               "RelativeToolTip": "Controllers\\TestController.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T20:03:40.587Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-09T20:03:40.587Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 22,
               "Title": "BookService.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Application\\Services\\BookService.cs",
               "RelativeDocumentMoniker": "..\\BookReviews.Application\\Services\\BookService.cs",
@@ -446,8 +411,7 @@
               "RelativeToolTip": "..\\BookReviews.Application\\Services\\BookService.cs",
               "ViewState": "AgIAAPQAAAAAAAAAAAAUwE8BAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T18:06:39.363Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T18:06:39.363Z"
             },
             {
               "$type": "Document",
@@ -459,12 +423,11 @@
               "RelativeToolTip": "Dockerfile",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-04-08T19:12:11.05Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T19:12:11.05Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 25,
               "Title": "ReviewService.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Application\\Services\\ReviewService.cs",
               "RelativeDocumentMoniker": "..\\BookReviews.Application\\Services\\ReviewService.cs",
@@ -472,12 +435,11 @@
               "RelativeToolTip": "..\\BookReviews.Application\\Services\\ReviewService.cs",
               "ViewState": "AgIAAEMAAAAAAAAAAAAkwGsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T19:20:48.244Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T19:20:48.244Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 21,
               "Title": "BookDto.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Application\\DTOs\\BookDto.cs",
               "RelativeDocumentMoniker": "..\\BookReviews.Application\\DTOs\\BookDto.cs",
@@ -485,12 +447,11 @@
               "RelativeToolTip": "..\\BookReviews.Application\\DTOs\\BookDto.cs",
               "ViewState": "AgIAAC0AAAAAAAAAAAAuwFgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T19:05:47.812Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T19:05:47.812Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 23,
               "Title": "BookRepository.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Infrastructure\\Data\\Repositories\\BookRepository.cs",
               "RelativeDocumentMoniker": "..\\BookReviews.Infrastructure\\Data\\Repositories\\BookRepository.cs",
@@ -498,12 +459,11 @@
               "RelativeToolTip": "..\\BookReviews.Infrastructure\\Data\\Repositories\\BookRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T20:25:05.509Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T20:25:05.509Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 27,
               "Title": "BookReviews.Application.csproj",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Application\\BookReviews.Application.csproj",
               "RelativeDocumentMoniker": "..\\BookReviews.Application\\BookReviews.Application.csproj",
@@ -511,12 +471,11 @@
               "RelativeToolTip": "..\\BookReviews.Application\\BookReviews.Application.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-08T20:12:54.576Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T20:12:54.576Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 29,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
@@ -524,12 +483,11 @@
               "RelativeToolTip": "Controllers\\AuthController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T19:14:04.103Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T19:14:04.103Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 30,
               "Title": "AuthService.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Application\\Services\\AuthService.cs",
               "RelativeDocumentMoniker": "..\\BookReviews.Application\\Services\\AuthService.cs",
@@ -537,12 +495,11 @@
               "RelativeToolTip": "..\\BookReviews.Application\\Services\\AuthService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T19:06:31.775Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T19:06:31.775Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 28,
               "Title": "BookController.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\Controllers\\BookController.cs",
               "RelativeDocumentMoniker": "Controllers\\BookController.cs",
@@ -550,8 +507,7 @@
               "RelativeToolTip": "Controllers\\BookController.cs",
               "ViewState": "AgIAAGIAAAAAAAAAAAAiwHwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T18:06:24.911Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T18:06:24.911Z"
             }
           ]
         }

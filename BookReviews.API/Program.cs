@@ -1,7 +1,9 @@
 using BookReviews.API.Extensions;
+using BookReviews.API.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
-
+DotEnv.Load();
+builder.Configuration.AddEnvironmentVariables();
 
 // Configurar Serilog
 builder.ConfigurarSerilog();
