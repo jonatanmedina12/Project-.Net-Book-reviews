@@ -12,6 +12,7 @@ builder.Configuration.AddEnvironmentVariables();
 Console.WriteLine("Variables de entorno después de la carga:");
 Console.WriteLine($"DEFAULT_CONNECTION presente: {!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("DEFAULT_CONNECTION"))}");
 Console.WriteLine($"JWT_SECRET presente: {!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("JWT_SECRET"))}");
+Console.WriteLine($"DEFAULT_CONNECTION presente: {Environment.GetEnvironmentVariable("DEFAULT_CONNECTION")}");
 
 // Configurar Serilog
 builder.ConfigurarSerilog();
