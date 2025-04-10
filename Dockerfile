@@ -31,6 +31,10 @@ WORKDIR /app
 # Copiar los archivos de publicación
 COPY --from=build /app/publish .
 
+# Copiar el script de inicio
+COPY start.sh .
+RUN chmod +x start.sh
+
 # Configuración para Railway
 ENV ASPNETCORE_URLS=http://0.0.0.0:$PORT
 ENV ASPNETCORE_ENVIRONMENT=Production
@@ -38,5 +42,5 @@ ENV ASPNETCORE_ENVIRONMENT=Production
 # Exponer puerto
 EXPOSE $PORT
 
-# Comando de inicio
-ENTRYPOINT ["dotnet", "BookReviews.API.dll"]
+# Usar el script de inicio en lugar del comando directo
+ENTRYPOINT ["./start.sh"]

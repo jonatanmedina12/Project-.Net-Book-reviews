@@ -22,28 +22,41 @@ namespace BookReviews.API.Extensions
         /// <param name="configuration">Configuración de la aplicación</param>
         public static IConfiguration CargarVariablesEntorno(this IConfiguration configuration)
         {
-            // Cargar variables de entorno desde el archivo .env
-            DotEnv.Load();
+            // No necesitamos cargar DotEnv.Load() aquí, ya lo hicimos en Program.cs
 
-            // Reemplazar variables en la configuración
+            // Verificar si estamos en Railway
+            bool isRailway = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("RAILWAY_SERVICE_NAME")) ||
+                             !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("RAILWAY_STATIC_URL"));
+
+            // Si estamos en Railway, las variables ya deberían estar disponibles
+            if (isRailway)
+            {
+                Console.WriteLine("Detectado entorno Railway. Usando variables de entorno proporcionadas por Railway.");
+            }
+
+            // Reemplazar variables en la configuración (esto funciona tanto para .env como para Railway)
             if (Environment.GetEnvironmentVariable("DEFAULT_CONNECTION") != null)
             {
                 configuration["ConnectionStrings:DefaultConnection"] = Environment.GetEnvironmentVariable("DEFAULT_CONNECTION");
+                Console.WriteLine("Variable DEFAULT_CONNECTION cargada correctamente.");
             }
 
             if (Environment.GetEnvironmentVariable("DIRECT_CONNECTION") != null)
             {
                 configuration["ConnectionStrings:DirectConnection"] = Environment.GetEnvironmentVariable("DIRECT_CONNECTION");
+                Console.WriteLine("Variable DIRECT_CONNECTION cargada correctamente.");
             }
 
             if (Environment.GetEnvironmentVariable("JWT_SECRET") != null)
             {
                 configuration["JWT:Secret"] = Environment.GetEnvironmentVariable("JWT_SECRET");
+                Console.WriteLine("Variable JWT_SECRET cargada correctamente.");
             }
 
             if (Environment.GetEnvironmentVariable("JWT_EXPIRY_MINUTES") != null)
             {
                 configuration["JWT:ExpiryInMinutes"] = Environment.GetEnvironmentVariable("JWT_EXPIRY_MINUTES");
+                Console.WriteLine("Variable JWT_EXPIRY_MINUTES cargada correctamente.");
             }
 
             return configuration;
@@ -135,21 +148,30 @@ namespace BookReviews.API.Extensions
         /// </summary>
         private static void ConfigurarAutenticacionJWT(IServiceCollection services, IConfiguration configuration)
         {
+            // Verificar si la clave JWT está configurada
+            string jwtSecret = configuration["JWT:Secret"];
+            if (string.IsNullOrEmpty(jwtSecret))
+            {
+                Console.WriteLine("ERROR: JWT:Secret no está configurado o está vacío");
+                // Usar una clave predeterminada para desarrollo (NO HACER ESTO EN PRODUCCIÓN)
+                jwtSecret = "ClaveDeDesarrolloTemporalNoUsarEnProduccion123456789012345678901234";
+            }
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration["JWT:Secret"])),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSecret)),
                         ValidateIssuer = false,
                         ValidateAudience = false,
                         ValidateLifetime = true,
                         ClockSkew = TimeSpan.Zero,
-                        RoleClaimType = ClaimTypes.Role // Asegúrate de que esté configurado correctamente
+                        RoleClaimType = ClaimTypes.Role
                     };
 
-                    // Añade eventos para debugging
+                    // Eventos para debugging
                     options.Events = new JwtBearerEvents
                     {
                         OnAuthenticationFailed = context =>
@@ -160,7 +182,6 @@ namespace BookReviews.API.Extensions
                         OnTokenValidated = context =>
                         {
                             Console.WriteLine("Token validado correctamente");
-                            // Puedes imprimir los claims para verificar si está presente el rol
                             foreach (var claim in context.Principal.Claims)
                             {
                                 Console.WriteLine($"{claim.Type}: {claim.Value}");
@@ -170,7 +191,6 @@ namespace BookReviews.API.Extensions
                     };
                 });
         }
-
         /// <summary>
         /// Configura Swagger para la documentación de la API
         /// </summary>
