@@ -1,0 +1,13 @@
+{
+    "$schema": "https://railway.app/railway.schema.json",
+    "build": {
+      "builder": "DOCKERFILE",
+      "dockerfilePath": "./Dockerfile"
+    },
+    "deploy": {
+      "startCommand": "dotnet BookReviews.API.dll",
+      "healthcheckPath": "/health",
+      "healthcheckTimeout": 300,
+      "restartPolicyType": "on-failure"
+    }
+  }

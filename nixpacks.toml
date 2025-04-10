@@ -1,10 +1,18 @@
 [build]
-cmd = "dotnet publish BookReviews.API/BookReviews.API.csproj -c Release -o ./out"
+provider = "nixpacks"
 
-[start]
-cmd = "cd ./out && dotnet BookReviews.API.dll"
+[phases.setup]
+nixPkgs = ["dotnet-sdk_9"]
+
+[phases.build]
+cmds = [
+  "dotnet restore BookReviews.API/BookReviews.API.csproj",
+  "dotnet publish BookReviews.API/BookReviews.API.csproj -c Release -o ./out"
+]
+
+[phases.start]
+cmd = "dotnet ./out/BookReviews.API.dll"
 
 [env]
-DOTNET_VERSION = "9.0"
 ASPNETCORE_ENVIRONMENT = "Production"
 ASPNETCORE_URLS = "http://0.0.0.0:$PORT"

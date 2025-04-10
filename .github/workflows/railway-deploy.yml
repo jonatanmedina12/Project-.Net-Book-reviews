@@ -1,38 +1,18 @@
-name: Deploy to Railway
+[build]
+provider = "nixpacks"
 
-on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
-    
-jobs:
-  build-and-deploy:
-    name: Build and Deploy
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v3
-    
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '9.0.x'
-        
-    - name: Restore dependencies
-      run: dotnet restore BookReviews.API/BookReviews.API.sln
-      
-    - name: Build
-      run: dotnet build BookReviews.API/BookReviews.API.sln --no-restore --configuration Release
-      
-    - name: Test
-      run: dotnet test BookReviews.API/BookReviews.API.sln --no-build --verbosity normal --configuration Release
-      
-    - name: Publish
-      run: dotnet publish BookReviews.API/BookReviews.API.csproj -c Release -o ./publish
-        
-    - name: Deploy to Railway
-      uses: bervProject/railway-deploy@main
-      with:
-        railway_token: ${{ secrets.RAILWAY_TOKEN }}
-        service: "Project-.Net-Book-reviews"
+[phases.setup]
+nixPkgs = ["dotnet-sdk_9"]
+
+[phases.build]
+cmds = [
+  "dotnet restore BookReviews.API/BookReviews.API.csproj",
+  "dotnet publish BookReviews.API/BookReviews.API.csproj -c Release -o ./out"
+]
+
+[phases.start]
+cmd = "dotnet ./out/BookReviews.API.dll"
+
+[env]
+ASPNETCORE_ENVIRONMENT = "Production"
+ASPNETCORE_URLS = "http://0.0.0.0:$PORT"
