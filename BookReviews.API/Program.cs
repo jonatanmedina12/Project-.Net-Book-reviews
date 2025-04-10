@@ -1,35 +1,61 @@
 using BookReviews.API.Extensions;
 using BookReviews.API.Utilities;
-var builder = WebApplication.CreateBuilder(args);
+using System;
 
-// Primero cargar variables de entorno desde .env
-DotEnv.Load();
+// Mostrar información de inicio
+Console.WriteLine("Iniciando BookReviews API...");
+Console.WriteLine($"Fecha y hora: {DateTime.Now}");
+Console.WriteLine($"Directorio base: {AppDomain.CurrentDomain.BaseDirectory}");
 
-// Luego agregar configuración de variables de entorno
-builder.Configuration.AddEnvironmentVariables();
+try
+{
+    // Intentar cargar variables desde .env si el archivo existe
+    Console.WriteLine("Intentando cargar archivo .env (opcional)...");
+    DotEnv.Load();
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Error al cargar archivo .env (no crítico): {ex.Message}");
+    Console.WriteLine("Continuando con valores por defecto o variables de entorno del sistema.");
+}
 
-// Imprimir variables importantes para debugging
-Console.WriteLine("Variables de entorno después de la carga:");
-Console.WriteLine($"DEFAULT_CONNECTION presente: {!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("DEFAULT_CONNECTION"))}");
-Console.WriteLine($"JWT_SECRET presente: {!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("JWT_SECRET"))}");
-Console.WriteLine($"DEFAULT_CONNECTION presente: {Environment.GetEnvironmentVariable("DEFAULT_CONNECTION")}");
+try
+{
+    // Crear el builder de la aplicación
+    var builder = WebApplication.CreateBuilder(args);
 
-// Configurar Serilog
-builder.ConfigurarSerilog();
+    // Configurar Serilog
+    builder = builder.ConfigurarSerilog();
 
-// Añadir servicios al contenedor
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
+    // Obtener la configuración
+    var configuration = builder.Configuration;
 
-// Configurar servicios de aplicación
-builder.Services.AgregarServiciosAplicacion(builder.Configuration);
+    // Aplicar los valores por defecto si no hay variables de entorno
+    configuration.CargarVariablesEntorno();
 
-var app = builder.Build();
-Console.WriteLine($"Aplicación configurada para escuchar en: {string.Join(", ", app.Urls)}");
+    // Mostrar aplicación configurada
+    Console.WriteLine($"Aplicación configurada para escuchar en: {Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://localhost:5000"}");
 
-// Configurar la canalización de solicitudes HTTP
-app.ConfigurarMiddleware();
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-app.Run();
+    // Agregar servicios al contenedor
+    builder.Services.AgregarServiciosAplicacion(configuration);
+
+    // Agregar los controladores
+    builder.Services.AddControllers();
+
+    // Construir la aplicación
+    var app = builder.Build();
+
+    // Configurar el middleware HTTP
+    app.ConfigurarMiddleware();
+
+    Console.WriteLine("Aplicación configurada correctamente. Iniciando...");
+
+    // Ejecutar la aplicación
+    app.Run();
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Error fatal al iniciar la aplicación: {ex.Message}");
+    Console.WriteLine($"Stack trace: {ex.StackTrace}");
+    throw;
+}
