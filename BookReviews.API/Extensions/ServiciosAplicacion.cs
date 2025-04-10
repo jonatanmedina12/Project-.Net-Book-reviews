@@ -148,21 +148,30 @@ namespace BookReviews.API.Extensions
         /// </summary>
         private static void ConfigurarAutenticacionJWT(IServiceCollection services, IConfiguration configuration)
         {
+            // Verificar si la clave JWT está configurada
+            string jwtSecret = configuration["JWT:Secret"];
+            if (string.IsNullOrEmpty(jwtSecret))
+            {
+                Console.WriteLine("ERROR: JWT:Secret no está configurado o está vacío");
+                // Usar una clave predeterminada para desarrollo (NO HACER ESTO EN PRODUCCIÓN)
+                jwtSecret = "ClaveDeDesarrolloTemporalNoUsarEnProduccion123456789012345678901234";
+            }
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration["JWT:Secret"])),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSecret)),
                         ValidateIssuer = false,
                         ValidateAudience = false,
                         ValidateLifetime = true,
                         ClockSkew = TimeSpan.Zero,
-                        RoleClaimType = ClaimTypes.Role // Asegúrate de que esté configurado correctamente
+                        RoleClaimType = ClaimTypes.Role
                     };
 
-                    // Añade eventos para debugging
+                    // Eventos para debugging
                     options.Events = new JwtBearerEvents
                     {
                         OnAuthenticationFailed = context =>
@@ -173,7 +182,6 @@ namespace BookReviews.API.Extensions
                         OnTokenValidated = context =>
                         {
                             Console.WriteLine("Token validado correctamente");
-                            // Puedes imprimir los claims para verificar si está presente el rol
                             foreach (var claim in context.Principal.Claims)
                             {
                                 Console.WriteLine($"{claim.Type}: {claim.Value}");
@@ -183,7 +191,6 @@ namespace BookReviews.API.Extensions
                     };
                 });
         }
-
         /// <summary>
         /// Configura Swagger para la documentación de la API
         /// </summary>

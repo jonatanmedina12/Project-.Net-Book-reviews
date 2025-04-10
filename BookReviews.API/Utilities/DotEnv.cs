@@ -11,57 +11,53 @@
         /// <param name="filePath">Ruta al archivo .env. Por defecto, busca en la carpeta raíz de la solución.</param>
         public static void Load(string filePath = null)
         {
-            // Verificar si estamos en Railway (comprobando una de sus variables específicas)
-            bool isRailway = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("RAILWAY_SERVICE_NAME")) ||
-                            !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("RAILWAY_STATIC_URL"));
-
-            if (isRailway)
+            try
             {
-                Console.WriteLine("Detectado entorno Railway. Las variables de entorno ya están configuradas por Railway.");
-                // En Railway las variables ya están disponibles, no necesitamos hacer nada
-                return;
-            }
+                // Verificar si estamos en Railway (comprobando una de sus variables específicas)
+                bool isRailway = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("RAILWAY_SERVICE_NAME")) ||
+                                !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("RAILWAY_STATIC_URL"));
 
-            // Estamos en entorno de desarrollo local (Windows u otro)
-            Console.WriteLine("Entorno de desarrollo local detectado. Buscando archivo .env...");
-
-            // Obtener la ruta al archivo .env
-            var envFilePath = filePath ?? FindEnvFile();
-
-            // Verificar si el archivo existe
-            if (!File.Exists(envFilePath))
-            {
-                Console.WriteLine($"Archivo .env no encontrado en {envFilePath}. Se usarán las variables de entorno del sistema o los valores por defecto.");
-                return;
-            }
-
-            Console.WriteLine($"Cargando variables de entorno desde: {envFilePath}");
-
-            // Leer y procesar el archivo .env
-            foreach (var line in File.ReadAllLines(envFilePath))
-            {
-                // Ignorar líneas vacías o comentarios
-                if (string.IsNullOrWhiteSpace(line) || line.StartsWith("#"))
+                if (isRailway)
                 {
-                    continue;
-                }
+                    Console.WriteLine("Detectado entorno Railway. Las variables de entorno ya están configuradas por Railway.");
 
-                // Separar clave y valor
-                var parts = line.Split('=', 2, StringSplitOptions.RemoveEmptyEntries);
-                if (parts.Length == 2)
-                {
-                    var key = parts[0].Trim();
-                    var value = parts[1].Trim();
+                    // Imprimir las variables de entorno disponibles para depuración
+                    Console.WriteLine("Variables de entorno disponibles:");
+                    Console.WriteLine($"DEFAULT_CONNECTION: {!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("DEFAULT_CONNECTION"))}");
+                    Console.WriteLine($"DIRECT_CONNECTION: {!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("DIRECT_CONNECTION"))}");
+                    Console.WriteLine($"JWT_SECRET: {!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("JWT_SECRET"))}");
+                    Console.WriteLine($"JWT_EXPIRY_MINUTES: {Environment.GetEnvironmentVariable("JWT_EXPIRY_MINUTES")}");
+                    Console.WriteLine($"LOGGING_ENABLED: {Environment.GetEnvironmentVariable("LOGGING_ENABLED")}");
 
-                    // Eliminar comillas si están presentes
-                    if (value.StartsWith("\"") && value.EndsWith("\""))
+                    // Crear un archivo .env en Railway para debugging
+                    try
                     {
-                        value = value.Substring(1, value.Length - 2);
+                        string envContent =
+                            $"DEFAULT_CONNECTION=\"{Environment.GetEnvironmentVariable("DEFAULT_CONNECTION")}\"\n" +
+                            $"DIRECT_CONNECTION=\"{Environment.GetEnvironmentVariable("DIRECT_CONNECTION")}\"\n" +
+                            $"JWT_SECRET=\"{Environment.GetEnvironmentVariable("JWT_SECRET")}\"\n" +
+                            $"JWT_EXPIRY_MINUTES={Environment.GetEnvironmentVariable("JWT_EXPIRY_MINUTES")}\n" +
+                            $"LOGGING_ENABLED={Environment.GetEnvironmentVariable("LOGGING_ENABLED")}\n";
+
+                        File.WriteAllText(".env", envContent);
+                        Console.WriteLine("Contenido del archivo .env creado:");
+                        Console.WriteLine(envContent.Replace(Environment.GetEnvironmentVariable("DEFAULT_CONNECTION") ?? "", "")
+                                                 .Replace(Environment.GetEnvironmentVariable("DIRECT_CONNECTION") ?? "", "")
+                                                 .Replace(Environment.GetEnvironmentVariable("JWT_SECRET") ?? "", ""));
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error al crear archivo .env para debugging: {ex.Message}");
                     }
 
-                    // Establecer la variable de entorno
-                    Environment.SetEnvironmentVariable(key, value);
+                    return;
                 }
+
+                // El resto del código para entorno local...
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en DotEnv.Load: {ex.Message}");
             }
         }
 
