@@ -7,16 +7,16 @@
       "RelativeMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|d:\\repositorios\\project-.net-book-reviews\\bookreviews.api\\utilities\\dotenv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|solutionrelative:utilities\\dotenv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|d:\\repositorios\\project-.net-book-reviews\\bookreviews.api\\extensions\\serviciosaplicacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|solutionrelative:extensions\\serviciosaplicacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|d:\\repositorios\\project-.net-book-reviews\\bookreviews.api\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|solutionrelative:.env||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|d:\\repositorios\\project-.net-book-reviews\\bookreviews.api\\utilities\\dotenv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE5F24E7-C549-4F12-B8F8-BE20AB6C9D59}|BookReviews.API.csproj|solutionrelative:utilities\\dotenv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3EFA002E-73E2-467B-A589-FA0B2E132CF9}|..\\BookReviews.Infrastructure\\BookReviews.Infrastructure.csproj|d:\\repositorios\\project-.net-book-reviews\\bookreviews.infrastructure\\data\\configurations\\userconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -122,26 +122,26 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": ".env",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\.env",
               "RelativeDocumentMoniker": ".env",
               "ToolTip": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\.env",
               "RelativeToolTip": ".env",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-04-10T00:56:29.274Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "ServiciosAplicacion.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\Extensions\\ServiciosAplicacion.cs",
               "RelativeDocumentMoniker": "Extensions\\ServiciosAplicacion.cs",
               "ToolTip": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\Extensions\\ServiciosAplicacion.cs",
               "RelativeToolTip": "Extensions\\ServiciosAplicacion.cs",
-              "ViewState": "AgIAAK8AAAAAAAAAAAAkwMMAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAPMAAAAAAAAAAAArwAgBAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-09T20:12:46.087Z",
               "EditorCaption": ""
@@ -172,7 +172,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "DotEnv.cs",
               "DocumentMoniker": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\Utilities\\DotEnv.cs",
               "RelativeDocumentMoniker": "Utilities\\DotEnv.cs",
@@ -215,7 +215,7 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.API\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACAAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-08T19:12:11.479Z",
               "EditorCaption": ""

@@ -24,7 +24,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AgregarServiciosAplicacion(builder.Configuration);
 
 var app = builder.Build();
+Console.WriteLine($"Aplicación configurada para escuchar en: {string.Join(", ", app.Urls)}");
 
 // Configurar la canalización de solicitudes HTTP
 app.ConfigurarMiddleware();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 app.Run();
