@@ -26,17 +26,13 @@ jobs:
       run: dotnet build BookReviews.API/BookReviews.API.sln --no-restore --configuration Release
       
     - name: Test
-      run: dotnet test BookReviews.API/BookReviews.API.sln --no-build --verbosity normal --configuration Release || true
+      run: dotnet test BookReviews.API/BookReviews.API.sln --no-build --verbosity normal --configuration Release
       
     - name: Publish
-      run: |
-        dotnet publish BookReviews.API/BookReviews.API.csproj -c Release -o ./publish
-        
-    - name: Install Railway CLI
-      run: npm i -g @railway/cli
+      run: dotnet publish BookReviews.API/BookReviews.API.csproj -c Release -o ./publish
         
     - name: Deploy to Railway
       uses: bervProject/railway-deploy@main
       with:
-          railway_token: ${{ secrets.RAILWAY_TOKEN }}
-          service: "Project-.Net-Book-reviews"
+        railway_token: ${{ secrets.RAILWAY_TOKEN }}
+        service: "Project-.Net-Book-reviews"
