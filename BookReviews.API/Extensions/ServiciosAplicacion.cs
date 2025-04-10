@@ -125,9 +125,10 @@ namespace BookReviews.API.Extensions
             if (app.Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Book Review API v1"));
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Book Review API v1"));
 
             app.UseMiddleware<Middleware.ErrorHandlingMiddleware>();
             app.UseMiddleware<Middleware.RequestLoggingMiddleware>();
@@ -137,6 +138,7 @@ namespace BookReviews.API.Extensions
 
             app.UseAuthorization();
             app.MapControllers();
+            app.MapGet("/", () => Results.Redirect("/swagger"));
 
             return app;
         }
