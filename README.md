@@ -121,3 +121,71 @@ La aplicación utiliza PostgreSQL con las siguientes tablas principales:
 
 ## JONATAN ALBENIO MEDINA SANDOVAL ###
 ## JONATANALBENIOMEDINA@OUTLOOK.COM ##
+
+
+# Guía de configuración de BookReviews API
+
+## Estructura de configuración mejorada
+
+La configuración del proyecto ahora está organizada de la siguiente manera:
+
+1. **Archivos appsettings.json**: Contienen la configuración base por defecto
+2. **Variables de entorno del sistema**: Tienen prioridad sobre los archivos appsettings
+3. **Archivo .env**: Se carga en las variables de entorno, facilitando el desarrollo local
+
+## Orden de prioridad de configuración
+
+La aplicación busca los valores de configuración en el siguiente orden:
+
+1. Variables de entorno directamente presentes en el sistema
+2. Variables definidas en el archivo `.env` (si existe)
+3. Valores en `appsettings.{Environment}.json` (según el entorno activo)
+4. Valores en `appsettings.json`
+
+## Configuración para desarrollo local
+
+### Creación del archivo .env
+
+1. Copia el archivo `.env.example` a `.env` en la raíz del proyecto:
+   ```
+   cp .env.example .env
+   ```
+
+2. Edita el archivo `.env` para configurar tus propios valores:
+   ```
+   # Configuración de base de datos
+   DEFAULT_CONNECTION=Host=localhost;Database=bookreviewsdb;Username=tu_usuario;Password=tu_password;
+   
+   # Otras configuraciones
+   ...
+   ```
+
+### Configuración de la base de datos PostgreSQL local
+
+1. Asegúrate de tener PostgreSQL instalado y ejecutándose
+2. Crea la base de datos:
+   ```
+   createdb bookreviewsdb
+   ```
+3. Actualiza las credenciales en tu archivo `.env` o en `appsettings.Development.json`
+
+### Ejecución de migraciones
+
+```bash
+dotnet ef database update
+```
+
+## Configuración para entornos de despliegue
+
+Para Railway, Heroku u otros servicios de despliegue, configura las variables de entorno directamente en la plataforma:
+
+- `DEFAULT_CONNECTION`: Cadena de conexión principal
+- `JWT_SECRET`: Clave secreta para firmar tokens JWT 
+- `JWT_EXPIRY_MINUTES`: Tiempo de expiración de tokens
+- `LOGGING_ENABLED`: Activar/desactivar logging detallado
+
+## Notas adicionales
+
+- Las variables definidas en entornos de despliegue tendrán siempre prioridad sobre los archivos de configuración
+- Se recomienda no comprometer el archivo `.env` en el control de versiones (ya está en .gitignore)
+- Nunca almacenes contraseñas o secretos en archivos de configuración incluidos en el repositorio

@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace BookReviews.API.Migrations
+namespace BookReviews.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate_Base_server : Migration
+    public partial class MigracionInicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

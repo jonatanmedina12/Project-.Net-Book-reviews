@@ -9,11 +9,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace BookReviews.API.Migrations
+namespace BookReviews.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250408050609_InitialMigration2")]
-    partial class InitialMigration2
+    [Migration("20250422030322_MigracionInicial")]
+    partial class MigracionInicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,6 +40,28 @@ namespace BookReviews.API.Migrations
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("CoverImagePath")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("Isbn")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("Language")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<int>("Pages")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("PublishedYear")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Publisher")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<string>("Summary")
                         .HasMaxLength(2000)
@@ -80,6 +102,58 @@ namespace BookReviews.API.Migrations
                         .IsUnique();
 
                     b.ToTable("categories", "public");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Ficción"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "No Ficción"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Ciencia Ficción"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Fantasía"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Misterio"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Historia"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Biografía"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Autoayuda"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Programación"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Ciencia"
+                        });
                 });
 
             modelBuilder.Entity("BookReviews.Domain.Entities.Review", b =>
@@ -94,16 +168,17 @@ namespace BookReviews.API.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Comment")
+                        .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("character varying(1000)");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
@@ -140,7 +215,7 @@ namespace BookReviews.API.Migrations
 
                     b.Property<DateTime>("RegisterDate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<string>("Role")
@@ -189,24 +264,26 @@ namespace BookReviews.API.Migrations
 
                     b.OwnsOne("BookReviews.Domain.Entities.Rating", "Rating", b1 =>
                         {
-                            b1.Property<int>("ReviewId")
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
                                 .HasColumnType("integer");
 
                             b1.Property<int>("Value")
                                 .HasColumnType("integer")
                                 .HasColumnName("Rating");
 
-                            b1.HasKey("ReviewId");
+                            b1.HasKey("Id");
 
                             b1.ToTable("reviews", "public");
 
                             b1.WithOwner()
-                                .HasForeignKey("ReviewId");
+                                .HasForeignKey("Id");
                         });
 
                     b.Navigation("Book");
 
-                    b.Navigation("Rating");
+                    b.Navigation("Rating")
+                        .IsRequired();
 
                     b.Navigation("User");
                 });

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TFExHaWT5vE=",
+  "dgSpecHash": "CpTpY3meeQ0=",
   "success": true,
-  "projectFilePath": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Application\\BookReviews.Application.csproj",
+  "projectFilePath": "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Application\\BookReviews.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Jonat\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
     "C:\\Users\\Jonat\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
