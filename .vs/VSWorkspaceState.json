@@ -1,6 +1,16 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\BookReviews.API",
+    "\\BookReviews.API\\Extensions",
+    "\\BookReviews.API\\Middleware",
+    "\\BookReviews.API\\Migrations",
+    "\\BookReviews.API\\Utilities",
+    "\\BookReviews.Application\\Services",
+    "\\BookReviews.Infrastructure",
+    "\\BookReviews.Infrastructure\\Data",
+    "\\BookReviews.Infrastructure\\Data\\Configurations"
   ],
+  "SelectedNode": "\\BookReviews.API\\BookReviews.API.csproj",
   "PreviewInSolutionExplorer": false
 }

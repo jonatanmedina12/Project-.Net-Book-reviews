@@ -3,20 +3,17 @@ using System;
 using BookReviews.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace BookReviews.API.Migrations
+namespace BookReviews.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250409201850_InitialCreate_Base_server-2")]
-    partial class InitialCreate_Base_server2
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,6 +99,58 @@ namespace BookReviews.API.Migrations
                         .IsUnique();
 
                     b.ToTable("categories", "public");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Ficción"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "No Ficción"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Ciencia Ficción"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Fantasía"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Misterio"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Historia"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Biografía"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Autoayuda"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Programación"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Ciencia"
+                        });
                 });
 
             modelBuilder.Entity("BookReviews.Domain.Entities.Review", b =>

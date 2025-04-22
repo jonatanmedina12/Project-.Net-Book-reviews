@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Infrastructure\\BookReviews.Infrastructure.csproj": {}
+    "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Infrastructure\\BookReviews.Infrastructure.csproj": {}
   },
   "projects": {
-    "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Application\\BookReviews.Application.csproj": {
+    "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Application\\BookReviews.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Application\\BookReviews.Application.csproj",
+        "projectUniqueName": "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Application\\BookReviews.Application.csproj",
         "projectName": "BookReviews.Application",
-        "projectPath": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Application\\BookReviews.Application.csproj",
+        "projectPath": "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Application\\BookReviews.Application.csproj",
         "packagesPath": "C:\\Users\\Jonat\\.nuget\\packages\\",
-        "outputPath": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Application\\obj\\",
+        "outputPath": "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,11 +32,11 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Core\\BookReviews.Core.csproj": {
-                "projectPath": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Core\\BookReviews.Core.csproj"
+              "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Core\\BookReviews.Core.csproj": {
+                "projectPath": "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Core\\BookReviews.Core.csproj"
               },
-              "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Domain\\BookReviews.Domain.csproj": {
-                "projectPath": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Domain\\BookReviews.Domain.csproj"
+              "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Domain\\BookReviews.Domain.csproj": {
+                "projectPath": "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Domain\\BookReviews.Domain.csproj"
               }
             }
           }
@@ -51,7 +51,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -110,18 +110,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Core\\BookReviews.Core.csproj": {
+    "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Core\\BookReviews.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Core\\BookReviews.Core.csproj",
+        "projectUniqueName": "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Core\\BookReviews.Core.csproj",
         "projectName": "BookReviews.Core",
-        "projectPath": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Core\\BookReviews.Core.csproj",
+        "projectPath": "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Core\\BookReviews.Core.csproj",
         "packagesPath": "C:\\Users\\Jonat\\.nuget\\packages\\",
-        "outputPath": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Core\\obj\\",
+        "outputPath": "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -142,8 +142,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Domain\\BookReviews.Domain.csproj": {
-                "projectPath": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Domain\\BookReviews.Domain.csproj"
+              "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Domain\\BookReviews.Domain.csproj": {
+                "projectPath": "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Domain\\BookReviews.Domain.csproj"
               }
             }
           }
@@ -158,7 +158,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -179,18 +179,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Domain\\BookReviews.Domain.csproj": {
+    "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Domain\\BookReviews.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Domain\\BookReviews.Domain.csproj",
+        "projectUniqueName": "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Domain\\BookReviews.Domain.csproj",
         "projectName": "BookReviews.Domain",
-        "projectPath": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Domain\\BookReviews.Domain.csproj",
+        "projectPath": "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Domain\\BookReviews.Domain.csproj",
         "packagesPath": "C:\\Users\\Jonat\\.nuget\\packages\\",
-        "outputPath": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Domain\\obj\\",
+        "outputPath": "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -223,7 +223,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -244,18 +244,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Infrastructure\\BookReviews.Infrastructure.csproj": {
+    "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Infrastructure\\BookReviews.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Infrastructure\\BookReviews.Infrastructure.csproj",
+        "projectUniqueName": "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Infrastructure\\BookReviews.Infrastructure.csproj",
         "projectName": "BookReviews.Infrastructure",
-        "projectPath": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Infrastructure\\BookReviews.Infrastructure.csproj",
+        "projectPath": "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Infrastructure\\BookReviews.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\Jonat\\.nuget\\packages\\",
-        "outputPath": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Infrastructure\\obj\\",
+        "outputPath": "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -276,14 +276,14 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Application\\BookReviews.Application.csproj": {
-                "projectPath": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Application\\BookReviews.Application.csproj"
+              "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Application\\BookReviews.Application.csproj": {
+                "projectPath": "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Application\\BookReviews.Application.csproj"
               },
-              "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Core\\BookReviews.Core.csproj": {
-                "projectPath": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Core\\BookReviews.Core.csproj"
+              "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Core\\BookReviews.Core.csproj": {
+                "projectPath": "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Core\\BookReviews.Core.csproj"
               },
-              "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Domain\\BookReviews.Domain.csproj": {
-                "projectPath": "D:\\Repositorios\\Project-.Net-Book-reviews\\BookReviews.Domain\\BookReviews.Domain.csproj"
+              "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Domain\\BookReviews.Domain.csproj": {
+                "projectPath": "D:\\Repositorio\\Project-.Net-Book-reviews\\BookReviews.Domain\\BookReviews.Domain.csproj"
               }
             }
           }
@@ -298,7 +298,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -369,7 +369,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

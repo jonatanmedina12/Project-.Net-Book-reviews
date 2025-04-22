@@ -8,6 +8,7 @@ using Serilog;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text;
+using DotNetEnv;
 
 namespace BookReviews.API.Extensions
 {
@@ -16,108 +17,124 @@ namespace BookReviews.API.Extensions
     /// </summary>
     public static class ServiciosAplicacion
     {
-        // Valores por defecto para las variables de entorno
-        private const string DEFAULT_CONNECTION_VALUE = "User Id=postgres.bkitivgdezgwqqtwluky;Password=Jonatanmedina123__;Server=aws-0-us-east-2.pooler.supabase.com;Port=6543;Database=postgres;Timeout=300;Command Timeout=300;";
-        private const string DIRECT_CONNECTION_VALUE = "Host=db.bkitivgdezgwqqtwluky.supabase.co;Database=postgres;Username=postgres;Password=Jonatanmedina123__;SSL Mode=Require;Trust Server Certificate=true";
-        private const string JWT_SECRET_VALUE = "bdc5118737cbbd2b67026290dfe6de904d4fff8f2836c11425f6a2d1eeca42ced97d0afb748cf89c323df6b50f3e8432058f3a8992c6ce09c9ed8697ca75b7c9801fe5e536b2cc3499b8b2e43f5b5606ea27c9d0d071c69d4a013e151478535de1834d25f62add5528fe34421962cd63b13a802e07f4a15368fbf029c2ca3e4075c4351e161b85eaeb395a4719b34b4bad516dc47834dca43098dd6cf705f661cdb290d31f08c02f3ef34eb4d0986edfe504bfff9991ea748337717d30f84b3f82c9afda883da71bcd0d82f016a12f77ba51f01c91885f8253fd069b29add44b9d8d613555459a341421b2c62e96491c947968404bbcc07d030b65a05f25a1c0";
-        private const string JWT_EXPIRY_MINUTES_VALUE = "60";
-        private const string LOGGING_ENABLED_VALUE = "true";
-
         /// <summary>
-        /// Carga las variables de entorno desde el archivo .env o utiliza valores por defecto
+        /// Carga las variables de entorno desde el archivo .env y las integra con la configuración
         /// </summary>
         /// <param name="configuration">Configuración de la aplicación</param>
+        /// <returns>La configuración actualizada</returns>
         public static IConfiguration CargarVariablesEntorno(this IConfiguration configuration)
         {
             try
             {
-                // Verificar si estamos en Railway
+                // Cargar archivo .env si existe (primero buscar en la raíz del proyecto)
+                string envPath = Path.Combine(Directory.GetCurrentDirectory(), ".env");
+                bool envFileExists = File.Exists(envPath);
+
+                if (envFileExists)
+                {
+                    // Cargar variables desde .env en las variables de entorno
+                    Env.Load(envPath);
+                    Console.WriteLine($"Archivo .env cargado desde: {envPath}");
+
+                    // Mapear manualmente las variables de .env al formato esperado por .NET
+                    MapearVariablesEntorno();
+                }
+                else
+                {
+                    Console.WriteLine("No se encontró archivo .env. Se usarán valores de appsettings.json o variables de entorno.");
+                }
+
+                // Verificar si estamos en Railway u otro entorno de despliegue
                 bool isRailway = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("RAILWAY_SERVICE_NAME")) ||
                                 !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("RAILWAY_STATIC_URL"));
 
-                Console.WriteLine($"Detectado entorno Railway: {isRailway}");
-
-                // Establecer valores en la configuración, priorizando variables de entorno existentes
-                // sino usando los valores por defecto definidos como constantes
-
-                // DEFAULT_CONNECTION
-                string defaultConnection = Environment.GetEnvironmentVariable("DEFAULT_CONNECTION");
-                if (string.IsNullOrEmpty(defaultConnection))
+                // Si estamos en Railway, registrar esta información
+                if (isRailway)
                 {
-                    defaultConnection = DEFAULT_CONNECTION_VALUE;
-                    Environment.SetEnvironmentVariable("DEFAULT_CONNECTION", defaultConnection);
-                    Console.WriteLine("Usando valor por defecto para DEFAULT_CONNECTION");
+                    Console.WriteLine("Ejecutando en entorno Railway");
                 }
-                configuration["ConnectionStrings:DefaultConnection"] = defaultConnection;
-                Console.WriteLine("Variable DEFAULT_CONNECTION configurada correctamente.");
 
-                // DIRECT_CONNECTION
-                string directConnection = Environment.GetEnvironmentVariable("DIRECT_CONNECTION");
-                if (string.IsNullOrEmpty(directConnection))
-                {
-                    directConnection = DIRECT_CONNECTION_VALUE;
-                    Environment.SetEnvironmentVariable("DIRECT_CONNECTION", directConnection);
-                    Console.WriteLine("Usando valor por defecto para DIRECT_CONNECTION");
-                }
-                configuration["ConnectionStrings:DirectConnection"] = directConnection;
-                Console.WriteLine("Variable DIRECT_CONNECTION configurada correctamente.");
-
-                // JWT_SECRET
-                string jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET");
-                if (string.IsNullOrEmpty(jwtSecret))
-                {
-                    jwtSecret = JWT_SECRET_VALUE;
-                    Environment.SetEnvironmentVariable("JWT_SECRET", jwtSecret);
-                    Console.WriteLine("Usando valor por defecto para JWT_SECRET");
-                }
-                configuration["JWT:Secret"] = jwtSecret;
-                Console.WriteLine("Variable JWT_SECRET configurada correctamente.");
-
-                // JWT_EXPIRY_MINUTES
-                string jwtExpiryMinutes = Environment.GetEnvironmentVariable("JWT_EXPIRY_MINUTES");
-                if (string.IsNullOrEmpty(jwtExpiryMinutes))
-                {
-                    jwtExpiryMinutes = JWT_EXPIRY_MINUTES_VALUE;
-                    Environment.SetEnvironmentVariable("JWT_EXPIRY_MINUTES", jwtExpiryMinutes);
-                    Console.WriteLine("Usando valor por defecto para JWT_EXPIRY_MINUTES");
-                }
-                configuration["JWT:ExpiryInMinutes"] = jwtExpiryMinutes;
-                Console.WriteLine("Variable JWT_EXPIRY_MINUTES configurada correctamente.");
-
-                // LOGGING_ENABLED
-                string loggingEnabled = Environment.GetEnvironmentVariable("LOGGING_ENABLED");
-                if (string.IsNullOrEmpty(loggingEnabled))
-                {
-                    loggingEnabled = LOGGING_ENABLED_VALUE;
-                    Environment.SetEnvironmentVariable("LOGGING_ENABLED", loggingEnabled);
-                    Console.WriteLine("Usando valor por defecto para LOGGING_ENABLED");
-                }
-                configuration["Logging:Enabled"] = loggingEnabled;
-                Console.WriteLine("Variable LOGGING_ENABLED configurada correctamente.");
-
-                // Mostrar valores configurados (con redacción para seguridad)
-                Console.WriteLine("\nVariables de entorno configuradas:");
-                Console.WriteLine($"DEFAULT_CONNECTION: {MascarValorSensible(defaultConnection)}");
-                Console.WriteLine($"DIRECT_CONNECTION: {MascarValorSensible(directConnection)}");
-                Console.WriteLine($"JWT_SECRET: {MascarValorSensible(jwtSecret)}");
-                Console.WriteLine($"JWT_EXPIRY_MINUTES: {jwtExpiryMinutes}");
-                Console.WriteLine($"LOGGING_ENABLED: {loggingEnabled}");
+                // Verificar y registrar las variables de entorno clave
+                VerificarVariablesEntorno();
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al cargar variables de entorno: {ex.Message}");
-                Console.WriteLine("Usando valores por defecto para todas las variables");
-
-                // En caso de error, asegurar que los valores por defecto se establezcan
-                configuration["ConnectionStrings:DefaultConnection"] = DEFAULT_CONNECTION_VALUE;
-                configuration["ConnectionStrings:DirectConnection"] = DIRECT_CONNECTION_VALUE;
-                configuration["JWT:Secret"] = JWT_SECRET_VALUE;
-                configuration["JWT:ExpiryInMinutes"] = JWT_EXPIRY_MINUTES_VALUE;
-                configuration["Logging:Enabled"] = LOGGING_ENABLED_VALUE;
+                Console.WriteLine("Se continuará con los valores existentes en la configuración.");
             }
 
             return configuration;
         }
+
+        /// <summary>
+        /// Mapea las variables de .env al formato esperado por .NET
+        /// </summary>
+        private static void MapearVariablesEntorno()
+        {
+            // Mapeo para ConnectionStrings
+            string defaultConnection = Environment.GetEnvironmentVariable("DEFAULT_CONNECTION");
+            if (!string.IsNullOrEmpty(defaultConnection))
+            {
+                Environment.SetEnvironmentVariable("ConnectionStrings__DefaultConnection", defaultConnection);
+                Console.WriteLine("Variable DEFAULT_CONNECTION mapeada a ConnectionStrings__DefaultConnection");
+            }
+
+            // Mapeo para JWT
+            string jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET");
+            if (!string.IsNullOrEmpty(jwtSecret))
+            {
+                Environment.SetEnvironmentVariable("JWT__Secret", jwtSecret);
+                Console.WriteLine("Variable JWT_SECRET mapeada a JWT__Secret");
+            }
+
+            string jwtExpiryMinutes = Environment.GetEnvironmentVariable("JWT_EXPIRY_MINUTES");
+            if (!string.IsNullOrEmpty(jwtExpiryMinutes))
+            {
+                Environment.SetEnvironmentVariable("JWT__ExpiryMinutes", jwtExpiryMinutes);
+                Console.WriteLine("Variable JWT_EXPIRY_MINUTES mapeada a JWT__ExpiryMinutes");
+            }
+
+            // Mapeo para Logging
+            string loggingEnabled = Environment.GetEnvironmentVariable("LOGGING_ENABLED");
+            if (!string.IsNullOrEmpty(loggingEnabled))
+            {
+                Environment.SetEnvironmentVariable("Logging__Enabled", loggingEnabled);
+                Console.WriteLine("Variable LOGGING_ENABLED mapeada a Logging__Enabled");
+            }
+        }
+
+        /// <summary>
+        /// Verifica la presencia de variables de entorno clave y registra su estado
+        /// </summary>
+        private static void VerificarVariablesEntorno()
+        {
+            // Lista de variables clave que deberían estar configuradas
+            string[] variablesClave = new[]
+            {
+        "ConnectionStrings__DefaultConnection",
+        "JWT__Secret",
+        "JWT__ExpiryMinutes",
+        "Logging__Enabled"
+    };
+
+            foreach (var variable in variablesClave)
+            {
+                string valor = Environment.GetEnvironmentVariable(variable);
+
+                // Registrar si la variable está presente (sin mostrar su valor completo por seguridad)
+                if (valor != null)
+                {
+                    string valorEnmascarado = MascarValorSensible(valor);
+                    Console.WriteLine($"Variable de entorno {variable}: Configurada ({valorEnmascarado})");
+                }
+                else
+                {
+                    Console.WriteLine($"Variable de entorno {variable}: NO configurada");
+                }
+            }
+        }
+        /// <summary>
+     
 
         /// <summary>
         /// Configura todos los servicios necesarios para la aplicación
@@ -129,13 +146,13 @@ namespace BookReviews.API.Extensions
             this IServiceCollection services,
             IConfiguration configuration)
         {
-            // Cargar variables de entorno
+            // Cargar variables de entorno e integrarlas con la configuración
             configuration.CargarVariablesEntorno();
 
             // Registrar servicios de aplicación
             services.AddApplication();
 
-            // Registrar servicios de infraestructura con el flag de migraciones
+            // Registrar servicios de infraestructura
             services.AddInfrastructure(configuration);
 
             // Configurar autenticación JWT
@@ -207,14 +224,13 @@ namespace BookReviews.API.Extensions
         /// </summary>
         private static void ConfigurarAutenticacionJWT(IServiceCollection services, IConfiguration configuration)
         {
-            // Obtener la clave JWT (ya debería estar configurada)
+            // Obtener la clave JWT
             string jwtSecret = configuration["JWT:Secret"];
 
-            // Verificación adicional, aunque ya se debería haber manejado
+            // Verificación de seguridad
             if (string.IsNullOrEmpty(jwtSecret))
             {
-                Console.WriteLine("ADVERTENCIA: JWT:Secret no encontrado en configuración, usando valor por defecto.");
-                jwtSecret = JWT_SECRET_VALUE;
+                throw new InvalidOperationException("La clave JWT:Secret no está configurada. Verifique su archivo appsettings.json o variables de entorno.");
             }
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
