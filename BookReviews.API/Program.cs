@@ -1,8 +1,9 @@
 using BookReviews.API.Extensions;
+using Microsoft.AspNetCore.Hosting.Server;
+using Microsoft.AspNetCore.Hosting.Server.Features;
 using Serilog;
 using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
+using System.Linq;
 
 try
 {
@@ -56,6 +57,38 @@ try
 
     // Iniciar la aplicación
     Console.WriteLine("Iniciando la aplicación web");
+
+    // Registrar un callback para cuando la aplicación esté lista y mostrar las URLs
+    app.Lifetime.ApplicationStarted.Register(() =>
+    {
+        var server = app.Services.GetService(typeof(IServer)) as IServer;
+        if (server != null)
+        {
+            var addressFeature = server.Features.Get<IServerAddressesFeature>();
+            if (addressFeature != null)
+            {
+                Console.WriteLine("===== SERVIDOR WEB INICIALIZADO =====");
+                foreach (var address in addressFeature.Addresses)
+                {
+                    Console.WriteLine($"Escuchando en: {address}");
+
+                    // Crear URL para Swagger
+                    string swaggerUrl = address.TrimEnd('/') + "/swagger";
+                    Console.WriteLine($"Swagger UI disponible en: {swaggerUrl}");
+                }
+                Console.WriteLine("======================================");
+            }
+            else
+            {
+                Console.WriteLine("No se pudo obtener información de direcciones del servidor");
+            }
+        }
+        else
+        {
+            Console.WriteLine("No se pudo obtener el servicio de servidor");
+        }
+    });
+
     app.Run();
 
     return 0;
