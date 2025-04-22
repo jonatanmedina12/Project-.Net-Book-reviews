@@ -17,7 +17,6 @@ namespace BookReviews.Application.DTOs
         [EmailAddress(ErrorMessage = "Formato de correo electrónico inválido")]
         public string Email { get; set; }
 
-        [StringLength(500, ErrorMessage = "La URL de la imagen de perfil no puede exceder los 500 caracteres")]
         public string ProfilePictureUrl { get; set; }
     }
 }

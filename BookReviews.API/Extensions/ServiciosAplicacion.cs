@@ -36,22 +36,21 @@ namespace BookReviews.API.Extensions
                     Env.Load(envPath);
                     Console.WriteLine($"Archivo .env cargado desde: {envPath}");
 
-                    // Mapear manualmente las variables de .env al formato esperado por .NET
+                    // Mapear variables específicas del .env al formato esperado por .NET
                     MapearVariablesEntorno();
+
+                    // Verificar si estamos en Railway u otro entorno de despliegue
+                    bool isRailway = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("RAILWAY_SERVICE_NAME")) ||
+                                    !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("RAILWAY_STATIC_URL"));
+
+                    if (isRailway)
+                    {
+                        Console.WriteLine("Ejecutando en entorno Railway");
+                    }
                 }
                 else
                 {
                     Console.WriteLine("No se encontró archivo .env. Se usarán valores de appsettings.json o variables de entorno.");
-                }
-
-                // Verificar si estamos en Railway u otro entorno de despliegue
-                bool isRailway = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("RAILWAY_SERVICE_NAME")) ||
-                                !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("RAILWAY_STATIC_URL"));
-
-                // Si estamos en Railway, registrar esta información
-                if (isRailway)
-                {
-                    Console.WriteLine("Ejecutando en entorno Railway");
                 }
 
                 // Verificar y registrar las variables de entorno clave
@@ -65,6 +64,35 @@ namespace BookReviews.API.Extensions
 
             return configuration;
         }
+
+        /// <summary>
+        /// Convierte un diccionario jerárquico en un diccionario plano con claves separadas por ":"
+        /// </summary>
+        private static Dictionary<string, string> FlattenDictionary(Dictionary<string, object> dict, string prefix = "")
+        {
+            var result = new Dictionary<string, string>();
+
+            foreach (var entry in dict)
+            {
+                string key = string.IsNullOrEmpty(prefix) ? entry.Key : $"{prefix}:{entry.Key}";
+
+                if (entry.Value is Dictionary<string, object> nestedDict)
+                {
+                    var nestedResult = FlattenDictionary(nestedDict, key);
+                    foreach (var nestedEntry in nestedResult)
+                    {
+                        result[nestedEntry.Key] = nestedEntry.Value;
+                    }
+                }
+                else
+                {
+                    result[key] = entry.Value?.ToString();
+                }
+            }
+
+            return result;
+        }
+
 
         /// <summary>
         /// Mapea las variables de .env al formato esperado por .NET
@@ -111,11 +139,11 @@ namespace BookReviews.API.Extensions
             // Lista de variables clave que deberían estar configuradas
             string[] variablesClave = new[]
             {
-        "ConnectionStrings__DefaultConnection",
-        "JWT__Secret",
-        "JWT__ExpiryMinutes",
-        "Logging__Enabled"
-    };
+                "ConnectionStrings__DefaultConnection",
+                "JWT__Secret",
+                "JWT__ExpiryMinutes",
+                "Logging__Enabled"
+            };
 
             foreach (var variable in variablesClave)
             {
@@ -134,7 +162,7 @@ namespace BookReviews.API.Extensions
             }
         }
         /// <summary>
-     
+
 
         /// <summary>
         /// Configura todos los servicios necesarios para la aplicación

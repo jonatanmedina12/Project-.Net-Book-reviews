@@ -1,4 +1,5 @@
 ﻿using BookReviews.Application.DTOs;
+using BookReviews.Application.Helpers;
 using BookReviews.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -17,14 +18,24 @@ namespace BookReviews.API.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IWebRootProvider _webRootProvider;
 
         /// <summary>
         /// Constructor del controlador de usuarios
         /// </summary>
         /// <param name="userService">Servicio de usuarios</param>
-        public UserController(IUserService userService)
+        /// <param name="webRootProvider">Proveedor para acceder a la ruta wwwroot</param>
+        public UserController(IUserService userService, IWebRootProvider webRootProvider)
         {
             _userService = userService;
+            _webRootProvider = webRootProvider;
+
+            // Crear directorio para imágenes de perfil si no existe
+            var uploadDirectory = Path.Combine(_webRootProvider.GetWebRootPath(), "uploads", "profiles");
+            if (!Directory.Exists(uploadDirectory))
+            {
+                Directory.CreateDirectory(uploadDirectory);
+            }
         }
 
         /// <summary>
@@ -60,12 +71,52 @@ namespace BookReviews.API.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
+
             try
             {
                 var userId = GetCurrentUserId();
+
+                // Verificar si se está enviando una imagen en base64
+                if (!string.IsNullOrEmpty(updateProfileDto.ProfilePictureUrl) &&
+                    updateProfileDto.ProfilePictureUrl.StartsWith("data:image"))
+                {
+                    try
+                    {
+                        // Generar nombre de archivo único
+                        string fileName = $"profile_{userId}_{Guid.NewGuid()}.png";
+
+                        // Convertir base64 a IFormFile
+                        var imageFile = ImageHelper.Base64ToIFormFile(
+                            updateProfileDto.ProfilePictureUrl,
+                            fileName
+                        );
+
+                        // Guardar la imagen
+                        string filePath = Path.Combine(
+                            _webRootProvider.GetWebRootPath(),
+                            "uploads",
+                            "profiles",
+                            fileName
+                        );
+
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await imageFile.CopyToAsync(stream);
+                        }
+
+                        // Actualizar la URL en el DTO con la ruta relativa
+                        updateProfileDto.ProfilePictureUrl = $"/uploads/profiles/{fileName}";
+                    }
+                    catch (Exception ex)
+                    {
+                        return BadRequest($"Error al procesar la imagen: {ex.Message}");
+                    }
+                }
+
                 var result = await _userService.UpdateProfileAsync(userId, updateProfileDto);
                 if (!result)
                     return NotFound();
+
                 return NoContent();
             }
             catch (ArgumentException ex)
